@@ -8,4 +8,4 @@ Aaron Camacho Leandro
 Marco Vinicio Cambronero Fonseca
 
 
-Universida Nacional de Costa Rica
+Universidad Nacional de Costa Rica
