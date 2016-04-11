@@ -5,15 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class SQLiteHelpe extends SQLiteOpenHelper {
+public class GestorBD extends SQLiteOpenHelper {
 
 
-    /*public SQLiteHelpe(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    /*public GestorBD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, nombreBD, null, VERSIONBD);
     }*/
 
 
-    public SQLiteHelpe(Context context) {
+    public GestorBD(Context context) {
         super(context, nombreBD, null, VERSIONBD);
     }
 
