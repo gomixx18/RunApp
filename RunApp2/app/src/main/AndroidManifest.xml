@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActividadMain"></activity>
+        <activity android:name=".ActividadMain" />
+        <activity android:name=".RegistroPass" />
+        <activity android:name=".RegistroFit"></activity>
     </application>
 
 </manifest>

@@ -16,5 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="149dp"
         android:indeterminate="true"
-        android:indeterminateTint="#ffffff" />
+        android:indeterminateTint="#ffffff"
+        android:progressTint="#cc2e25"
+        android:secondaryProgressTint="#e62f2f" />
 </RelativeLayout>

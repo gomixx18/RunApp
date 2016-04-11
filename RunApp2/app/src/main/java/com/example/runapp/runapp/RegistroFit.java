@@ -5,18 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class ActividadMain extends AppCompatActivity {
+public class RegistroFit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actividad_main);
-        findViewById(R.id.btnSiguiente).setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_registro_fit);
+        findViewById(R.id.btnAnterior).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ActividadMain.this, RegistroPass.class));
+                startActivity(new Intent(RegistroFit.this, RegistroPass.class));
             }
         });
-
     }
 }

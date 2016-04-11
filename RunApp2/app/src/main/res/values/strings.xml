@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">RunApp</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="usuario">Usuario</string>
+    <string name="usuarioNom">Nombre de Usuario</string>
+    <string name="correo">Correo Electronico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="contrasena2">Confirmar Contraseña</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="title_activity_registro_pass">Registropass</string>
+    <string name="datosPer">Datos Personales</string>
+    <string name="sesion">Inicio de Sesión</string>
+    <string name="edad">Edad</string>
+    <string name="peso">Peso</string>
+    <string name="estatura">Estatura</string>
+    <string name="anterior">Anterior</string>
 </resources>
