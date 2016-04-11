@@ -52,6 +52,8 @@ public class SQLiteHelpe extends SQLiteOpenHelper {
             db.execSQL(crea_Usuario);
             db.execSQL(crea_Valoracion);
             db.execSQL(crea_Recorrido);
+
+        // Abi se la come
     }
 
 
