@@ -1,5 +1,6 @@
 package com.example.runapp.runapp;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ public class CronoActivity extends AppCompatActivity {
     public static final long aMinutos = 60000;
     public static final long aHoras = 3600000;
     public static long elapsedMillis;
+    public static String resultad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class CronoActivity extends AppCompatActivity {
                 String hh = h < 10 ? "0" + h : h + "";
                 String mm = m < 10 ? "0" + m : m + "";
                 String ss = s < 10 ? "0" + s : s + "";
+                resultad = hh + ":" + mm + ":" + ss;
                 cArg.setText(hh + ":" + mm + ":" + ss);
             }
         });
@@ -62,6 +65,8 @@ public class CronoActivity extends AppCompatActivity {
                 Crono.stop();
                 tiempoTranscurrido();
                 stop.setClickable(false);
+                resultad = Crono.getText().toString();
+                startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
             }
         });
 
