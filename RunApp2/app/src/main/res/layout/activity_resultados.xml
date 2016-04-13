@@ -91,7 +91,7 @@
         <ImageButton
             android:layout_width="300dp"
             android:layout_height="75dp"
-            android:id="@+id/imageButton"
+            android:id="@+id/btnImgMapa"
             android:src="@drawable/map"
             android:layout_below="@+id/textView6"
             android:layout_alignStart="@+id/textView6" />
