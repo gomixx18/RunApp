@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resultados de la Sesion"
-        android:id="@+id/textView2"
+        android:id="@+id/txtBienvenida"
         android:textStyle="bold"
         android:textSize="22dp"
         android:textColor="#000000"
@@ -35,8 +35,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/txtBienvenida"
+        android:layout_alignStart="@+id/txtBienvenida"
         android:layout_marginTop="26dp"
         android:background="#ff4b1a"
         android:id="@+id/relativeLayout">

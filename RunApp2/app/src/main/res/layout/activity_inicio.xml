@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:textSize="15dp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/txtBienvenida"
         android:layout_alignStart="@+id/btnCambiarDatos"
         android:layout_alignEnd="@+id/btnCambiarDatos" />
 
@@ -51,21 +51,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Bienvenid@"
-        android:id="@+id/textView2"
+        android:id="@+id/txtBienvenida"
         android:textStyle="normal|bold|italic"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/usernameLabel"
-        android:textStyle="normal|bold|italic"
-        android:text="dsd"
-        android:layout_marginStart="19dp"
-        android:layout_above="@+id/btnStartRecorrido"
-        android:layout_toEndOf="@+id/textView2" />
 
 </RelativeLayout>

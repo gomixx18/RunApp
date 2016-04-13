@@ -20,9 +20,10 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
 
         // Extraer el username para mostrar mensaje de Bienvenid@
-        //TextView etiquetaBienvenido = (TextView) findViewById(R.id.usernameLabel);
-        //String username = gestorBD.getUsername();
-        //etiquetaBienvenido.setText(username);
+        TextView etiquetaBienvenido = (TextView) findViewById(R.id.txtBienvenida);
+        String username = gestorBD.getUsername();
+        etiquetaBienvenido.setText("Bienvenid@ "+ username);
+
         findViewById(R.id.btnStartRecorrido).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
