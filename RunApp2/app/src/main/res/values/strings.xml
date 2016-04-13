@@ -15,4 +15,8 @@
     <string name="peso">Peso</string>
     <string name="estatura">Estatura</string>
     <string name="anterior">Anterior</string>
+    <string name="title_activity_inicio">Inicio</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

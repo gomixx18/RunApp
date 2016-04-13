@@ -108,7 +108,8 @@
         android:id="@+id/txtDatosPer"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold|italic" />
+        android:textStyle="normal|bold|italic"
+        android:editable="false" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
