@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.example.runapp.runapp.Modelo.GestorBD;
+
 public class PrincipalActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +16,7 @@ public class PrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.principal);
 
 
-
+        GestorBD gb = new GestorBD(this);
         Thread timer = new Thread() {
             //El nuevo Thread exige el metodo run
             public void run() {
@@ -25,7 +27,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
 
-                    startActivity(new Intent(PrincipalActivity.this, ActividadMain.class));
+                    startActivity(new Intent(PrincipalActivity.this, CronoActivity.class));
                     finish();
                 }
             }
