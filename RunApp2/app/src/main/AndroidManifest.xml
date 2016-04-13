@@ -18,7 +18,8 @@
         <activity android:name=".ActividadMain" />
         <activity android:name=".RegistroPass" />
         <activity android:name=".RegistroFit" />
-        <activity android:name=".CronoActivity"></activity>
+        <activity android:name=".CronoActivity" />
+        <activity android:name=".ResultadosActivity"></activity>
     </application>
 
 </manifest>
