@@ -9,6 +9,8 @@ import com.example.runapp.runapp.Modelo.GestorBD;
 
 public class PrincipalActivity extends AppCompatActivity {
 
+    public final GestorBD gestorBD = new GestorBD(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +18,8 @@ public class PrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.principal);
 
 
-        GestorBD gb = new GestorBD(this);
+
+
         Thread timer = new Thread() {
             //El nuevo Thread exige el metodo run
             public void run() {
@@ -27,7 +30,11 @@ public class PrincipalActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
 
-                    startActivity(new Intent(PrincipalActivity.this, CronoActivity.class));
+                    if(gestorBD.numero_Filas("BD_RunApp_Usuario") == 0)
+                        startActivity(new Intent(PrincipalActivity.this, Inicio.class));
+                    else
+                        startActivity(new Intent(PrincipalActivity.this, Inicio.class));
+
                     finish();
                 }
             }
