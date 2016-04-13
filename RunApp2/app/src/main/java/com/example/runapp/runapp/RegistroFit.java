@@ -45,7 +45,7 @@ public class RegistroFit extends AppCompatActivity {
                         ActividadMain.getNombre(),
                         ActividadMain.getApellido(),
                         ActividadMain.getUsername(),
-                        ActividadMain.getUsername(),
+                        ActividadMain.getEmail(),
                         edad,
                         peso,
                         estatura));
