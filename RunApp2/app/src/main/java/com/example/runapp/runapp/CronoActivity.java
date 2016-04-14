@@ -115,9 +115,9 @@ public class CronoActivity extends AppCompatActivity {
 
     private void muestraAlerta() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Habilitar Localizacion")
-                .setMessage("Su GPS esta apagado.\nEncienda su GPS")
-                .setPositiveButton("Configuracion Local", new DialogInterface.OnClickListener() {
+        dialog.setTitle("Habilitar Localización")
+                .setMessage("Su GPS está apagado.\nEncienda su GPS")
+                .setPositiveButton("Configuración Local", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -125,7 +125,12 @@ public class CronoActivity extends AppCompatActivity {
 
                         isGPSEnabled = locationManager
                                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+                        /*isNetworkEnabled = locationManager
+                                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);*/
+
                         finish();
+                        //startActivity(new Intent(CronoActivity.this, CronoActivity.class));
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -145,7 +150,7 @@ public class CronoActivity extends AppCompatActivity {
 
 
     private boolean isLocationEnabled() {
-        return isGPSEnabled;
+        return isGPSEnabled /*&& isNetworkEnabled*/;
     }
 
 
