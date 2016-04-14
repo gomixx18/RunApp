@@ -1,7 +1,12 @@
 package com.example.runapp.runapp;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.SystemClock;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +23,9 @@ public class CronoActivity extends AppCompatActivity {
     public static final long aHoras = 3600000;
     public static long elapsedMillis;
     public static String resultad;
+    LocationManager locationManager;
+    public static boolean isGPSEnabled = false;
+    public static boolean isNetworkEnabled = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +37,13 @@ public class CronoActivity extends AppCompatActivity {
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
         stop.setClickable(false);
+        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
+
+        isNetworkEnabled = locationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         Crono.setText("00:00:00");
         Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -50,10 +64,17 @@ public class CronoActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(checkLocation()){
                 Crono.setText("00:00:00");
                 Crono.setBase(SystemClock.elapsedRealtime());
                 stop.setClickable(true);
                 Crono.start();
+
+                }
+                else {
+
+                    muestraAlerta();
+                }
             }
         });
 
@@ -67,6 +88,7 @@ public class CronoActivity extends AppCompatActivity {
                 stop.setClickable(false);
                 resultad = Crono.getText().toString();
                 startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
+                finish();
             }
         });
 
@@ -86,4 +108,52 @@ public class CronoActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
 
+
+
+
+
+
+    private void muestraAlerta() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Habilitar Localización")
+                .setMessage("Su GPS está apagado.\nEncienda su GPS")
+                .setPositiveButton("Configuración Local", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(myIntent);
+
+                        isGPSEnabled = locationManager
+                                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+                        /*isNetworkEnabled = locationManager
+                                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);*/
+
+                        finish();
+                        //startActivity(new Intent(CronoActivity.this, CronoActivity.class));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    }
+                });
+        dialog.show();
+    }
+
+
+    private boolean checkLocation() {
+        if(!isLocationEnabled())
+            muestraAlerta();
+        return isLocationEnabled();
+    }
+
+
+    private boolean isLocationEnabled() {
+        return isGPSEnabled /*&& isNetworkEnabled*/;
+    }
+
+
 }
+
+
