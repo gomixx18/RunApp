@@ -31,49 +31,41 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapa = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapa.getMapAsync(this);
-        mMap = mapa.getMap();
+
 
 
 
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         mMap.setMyLocationEnabled(true);
 
-        Criteria criteria = new Criteria();
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        String provider = locationManager.getBestProvider(criteria, false);
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        double lat =  location.getLatitude();
-        double lng = location.getLongitude();
-
-        LatLng coordenadas = new LatLng(lat, lng);
+        LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
         CameraUpdate ubicacion=
                 CameraUpdateFactory.newLatLng(coordenadas);
-        CameraUpdate zoom=CameraUpdateFactory.zoomTo(18);
+        CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
         mMap.moveCamera(ubicacion);
         mMap.animateCamera(zoom);
+
+       // Criteria criteria = new Criteria();
+       // LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+       // String provider = locationManager.getBestProvider(criteria, false);
+       // Location location = locationManager.getLastKnownLocation(provider);
+
+        //double lat =  location.getLatitude();
+       // double lng = location.getLongitude();
+
+       // LatLng coordenadas = new LatLng(lat, lng);
+        //CameraUpdate ubicacion= CameraUpdateFactory.newLatLng(coordenadas);
+        //Ca/meraUpdate zoom=CameraUpdateFactory.zoomTo(18);
+
+        //mMap.moveCamera(ubicacion);
+        //mMap.animateCamera(zoom);
     }
 }
