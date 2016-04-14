@@ -41,10 +41,10 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker in Costa Rica and move the camera
+        LatLng sanJose = new LatLng(9.93, -84.10);
+        mMap.addMarker(new MarkerOptions().position(sanJose).title("Marker in Costa Rica"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sanJose));
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -61,9 +61,9 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
        // LatLng coordenadas = new LatLng(lat, lng);
         //CameraUpdate ubicacion=
         //        CameraUpdateFactory.newLatLng(coordenadas);
-        //CameraUpdate zoom=CameraUpdateFactory.zoomTo(18);
+        CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
 
        // mMap.moveCamera(ubicacion);
-       // mMap.animateCamera(zoom);
+        mMap.animateCamera(zoom);
     }
 }
