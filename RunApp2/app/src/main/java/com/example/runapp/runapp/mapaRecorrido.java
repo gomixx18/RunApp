@@ -40,24 +40,23 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-<<<<<<< HEAD
-=======
+
         // Add a marker in Costa Rica and move the camera
         LatLng sanJose = new LatLng(9.93, -84.10);
         mMap.addMarker(new MarkerOptions().position(sanJose).title("Marker in Costa Rica"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sanJose));
 
->>>>>>> origin/master
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         //mMap.setMyLocationEnabled(true);
 
-<<<<<<< HEAD
+
         LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
         CameraUpdate ubicacion=
                 CameraUpdateFactory.newLatLng(coordenadas);
         CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
-=======
+
         Criteria criteria = new Criteria();
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(criteria, false);
@@ -69,8 +68,8 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
        // LatLng coordenadas = new LatLng(lat, lng);
         //CameraUpdate ubicacion=
         //        CameraUpdateFactory.newLatLng(coordenadas);
-        CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
->>>>>>> origin/master
+       // CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
+
 
        // mMap.moveCamera(ubicacion);
         mMap.animateCamera(zoom);
