@@ -117,7 +117,23 @@ public class CronoActivity extends AppCompatActivity {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Habilitar Localización")
                 .setMessage("Su GPS está apagado.\nEncienda su GPS")
-                .setPositiveButton("Configuración Local", new DialogInterface.OnClickListener() {
+                .setCancelable(true)
+                .setPositiveButton("Fin", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        startActivity(new Intent(CronoActivity.this, CronoActivity.class));
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+
+                    }
+
+
+                })
+                .setNeutralButton("Configuración",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -125,19 +141,11 @@ public class CronoActivity extends AppCompatActivity {
 
                         isGPSEnabled = locationManager
                                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-                        /*isNetworkEnabled = locationManager
-                                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);*/
-
-                        finish();
-                        //startActivity(new Intent(CronoActivity.this, CronoActivity.class));
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    }
+
+
                 });
+
         dialog.show();
     }
 

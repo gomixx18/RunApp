@@ -20,4 +20,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_mapa_recorrido">Map</string>
+    <string name="title_activity_ver_recorridos">VerRecorridos</string>
+    <string name="title_activity_cambiar_datos">CambiarDatos</string>
 </resources>

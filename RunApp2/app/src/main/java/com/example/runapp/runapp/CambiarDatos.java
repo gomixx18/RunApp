@@ -6,50 +6,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.runapp.runapp.Modelo.GestorBD;
-
-public class Inicio extends AppCompatActivity {
-
-    public final GestorBD gestorBD = new GestorBD(this);
+public class CambiarDatos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
-
-        // Extraer el username para mostrar mensaje de Bienvenid@
-        TextView etiquetaBienvenido = (TextView) findViewById(R.id.txtBienvenida);
-        String username = gestorBD.getUsername();
-        etiquetaBienvenido.setText("Bienvenid@ " + username);
-
-        findViewById(R.id.btnStartRecorrido).setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_cambiar_datos);
+        findViewById(R.id.btnCancelar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Inicio.this, CronoActivity.class));
+                startActivity(new Intent(CambiarDatos.this, Inicio.class));
             }
         });
-        findViewById(R.id.btnVerRecorridos).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnGuarda).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Inicio.this, VerRecorridos.class));
+                Toast.makeText(CambiarDatos.this, "Datos guardados exitosamente", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(CambiarDatos.this, Inicio.class));
             }
         });
-        findViewById(R.id.btnCambiarDatos).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Inicio.this, CambiarDatos.class));
-            }
-        });
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inicio, menu);
+        getMenuInflater().inflate(R.menu.menu_cambiar_datos, menu);
         return true;
     }
 
