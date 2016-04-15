@@ -52,14 +52,14 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
         //mMap.setMyLocationEnabled(true);
 
 
-        LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
-        CameraUpdate ubicacion=
-                CameraUpdateFactory.newLatLng(coordenadas);
-        CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+        //LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
+        //CameraUpdate ubicacion=
+                //CameraUpdateFactory.newLatLng(coordenadas);
+        //CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
-        Criteria criteria = new Criteria();
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        String provider = locationManager.getBestProvider(criteria, false);
+        //Criteria criteria = new Criteria();
+        //LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //String provider = locationManager.getBestProvider(criteria, false);
        // Location location = locationManager.getLastKnownLocation(provider);
 
         //double lat =  location.getLatitude();
@@ -72,7 +72,7 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
 
 
        // mMap.moveCamera(ubicacion);
-        mMap.animateCamera(zoom);
+        //mMap.animateCamera(zoom);
 
        // Criteria criteria = new Criteria();
        // LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
