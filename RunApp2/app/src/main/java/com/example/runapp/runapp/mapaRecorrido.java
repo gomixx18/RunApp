@@ -30,25 +30,32 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapa = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapa.getMapAsync(this);
-        mMap = mapa.getMap();
+
 
 
 
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
 
         // Add a marker in Costa Rica and move the camera
         LatLng sanJose = new LatLng(9.93, -84.10);
         mMap.addMarker(new MarkerOptions().position(sanJose).title("Marker in Costa Rica"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sanJose));
 
+
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         //mMap.setMyLocationEnabled(true);
+
+
+        LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
+        CameraUpdate ubicacion=
+                CameraUpdateFactory.newLatLng(coordenadas);
+        CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
         Criteria criteria = new Criteria();
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -61,9 +68,25 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
        // LatLng coordenadas = new LatLng(lat, lng);
         //CameraUpdate ubicacion=
         //        CameraUpdateFactory.newLatLng(coordenadas);
-        CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
+       // CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
+
 
        // mMap.moveCamera(ubicacion);
         mMap.animateCamera(zoom);
+
+       // Criteria criteria = new Criteria();
+       // LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+       // String provider = locationManager.getBestProvider(criteria, false);
+       // Location location = locationManager.getLastKnownLocation(provider);
+
+        //double lat =  location.getLatitude();
+       // double lng = location.getLongitude();
+
+       // LatLng coordenadas = new LatLng(lat, lng);
+        //CameraUpdate ubicacion= CameraUpdateFactory.newLatLng(coordenadas);
+        //Ca/meraUpdate zoom=CameraUpdateFactory.zoomTo(18);
+
+        //mMap.moveCamera(ubicacion);
+        //mMap.animateCamera(zoom);
     }
 }
