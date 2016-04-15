@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.runapp.runapp">
+    package="com.example.runapp.runapp" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -8,20 +8,19 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".PrincipalActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".PrincipalActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +47,15 @@
 
         <activity
             android:name=".mapaRecorrido"
-            android:label="@string/title_activity_mapa_recorrido"></activity>
+            android:label="@string/title_activity_mapa_recorrido" />
+        <activity
+            android:name=".VerRecorridos"
+            android:label="@string/title_activity_ver_recorridos" >
+        </activity>
+        <activity
+            android:name=".CambiarDatos"
+            android:label="@string/title_activity_cambiar_datos" >
+        </activity>
     </application>
 
 </manifest>
