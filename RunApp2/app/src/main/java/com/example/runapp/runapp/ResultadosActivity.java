@@ -24,7 +24,7 @@ public class ResultadosActivity extends AppCompatActivity {
         findViewById(R.id.btnImgMapa).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ResultadosActivity.this, mapaRecorrido.class));
+                startActivity(new Intent(ResultadosActivity.this, Mapa.class));
             }
         });
 
