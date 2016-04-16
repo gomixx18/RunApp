@@ -16,8 +16,11 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import com.example.runapp.runapp.CronoActivity;
+
+import java.util.List;
 
 public class GPS extends Service implements LocationListener {
 
@@ -29,40 +32,35 @@ public class GPS extends Service implements LocationListener {
     }
 
     public Location obtenerLocalizacion() {
-        locationManager = (LocationManager) mContext
-                .getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                updateTiempo,
+                updateDistancia,this);
+
+        List<String> providers = locationManager.getProviders(true);
+        Location l = null;
+
+        for (int i = 0; i < providers.size(); i++) {
+            l = locationManager.getLastKnownLocation(providers.get(i));
+            if (l != null) {
+                latitud = l.getLatitude();
+                longitud = l.getLongitude();
+
+                break;
+            }
+        }
 
         habilitaGPS = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-
-
-        if (habilitaGPS) {
-            if (lugar == null) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                    locationManager.requestLocationUpdates(
-                            LocationManager.GPS_PROVIDER,
-                            updateTiempo,
-                            updateDistancia, this);
-
-                    if (locationManager != null) {
-                        lugar = locationManager
-                                .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (lugar != null) {
-                            latitud = lugar.getLatitude();
-                            longitud = lugar.getLongitude();
-                        }
-                    }
-                }
-
-            }
-        }
-        return lugar;
+            return l;
     }
 
     @Override
     public void onLocationChanged(Location location) {
+
+
 
     }
 
@@ -88,33 +86,7 @@ public class GPS extends Service implements LocationListener {
     }
 
 
-    public void showSettingsAlert(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
-
-        alertDialog.setTitle("GPS is settings");
-
-
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-
-
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-            }
-        });
-
-
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-
-        alertDialog.show();
-    }
 
     public double Latitud(){
         if(lugar != null){
@@ -133,10 +105,11 @@ public class GPS extends Service implements LocationListener {
 
     protected LocationManager locationManager;
     private static final long updateDistancia = 20;
-    private static final long updateTiempo = 1000 * 60 * 1;
+    private static final long updateTiempo = 1000 * 5;
     Location lugar;
     double latitud;
     double longitud;
+
     public static boolean habilitaGPS = false;
     boolean habilitaNetwork = false;
     boolean Location = false;
