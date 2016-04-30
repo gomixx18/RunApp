@@ -17,14 +17,14 @@ public class CambiarDatos extends AppCompatActivity {
         findViewById(R.id.btnCancelar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CambiarDatos.this, Inicio.class));
+                startActivity(new Intent(CambiarDatos.this, incioDrawer.class));
             }
         });
         findViewById(R.id.btnGuarda).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CambiarDatos.this, "Datos guardados exitosamente", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(CambiarDatos.this, Inicio.class));
+                startActivity(new Intent(CambiarDatos.this, incioDrawer.class));
             }
         });
     }

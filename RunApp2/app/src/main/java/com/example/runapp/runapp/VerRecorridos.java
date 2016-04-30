@@ -16,7 +16,7 @@ public class VerRecorridos extends AppCompatActivity {
         findViewById(R.id.btnVolver).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(VerRecorridos.this, Inicio.class));
+                startActivity(new Intent(VerRecorridos.this, incioDrawer.class));
             }
         });
     }

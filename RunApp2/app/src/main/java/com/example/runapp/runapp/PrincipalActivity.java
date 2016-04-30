@@ -33,7 +33,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     if(gestorBD.numero_Filas("BD_RunApp_Usuario") == 0)
                         startActivity(new Intent(PrincipalActivity.this, ActividadMain.class));
                     else
-                        startActivity(new Intent(PrincipalActivity.this, Inicio.class));
+                        startActivity(new Intent(PrincipalActivity.this, incioDrawer.class));
 
                     finish();
                 }

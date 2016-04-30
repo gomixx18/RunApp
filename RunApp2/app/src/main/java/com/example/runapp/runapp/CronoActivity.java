@@ -3,12 +3,14 @@ package com.example.runapp.runapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,12 +28,11 @@ import java.util.List;
 public class CronoActivity extends AppCompatActivity implements LocationListener {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crono);
 
+        setContentView(R.layout.activity_crono);
 
 
         start = (Button) findViewById(R.id.button2);
@@ -39,10 +40,20 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
         Crono = (Chronometer) findViewById(R.id.chronometer);
         stop.setClickable(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 updateTiempo,
-                updateDistancia,this);
+                updateDistancia, this);
 
         List<String> providers = locationManager.getProviders(true);
 
@@ -81,14 +92,13 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isGPSEnabled){
-                Crono.setText("00:00:00");
-                Crono.setBase(SystemClock.elapsedRealtime());
-                stop.setClickable(true);
-                Crono.start();
+                if (isGPSEnabled) {
+                    Crono.setText("00:00:00");
+                    Crono.setBase(SystemClock.elapsedRealtime());
+                    stop.setClickable(true);
+                    Crono.start();
 
-                }
-                else {
+                } else {
 
                     muestraAlerta();
                 }
@@ -102,8 +112,8 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
             public void onClick(View v) {
                 Crono.stop();
                 tiempoTranscurrido();
+                stopUsingGPS();
                 stop.setClickable(false);
-                turnGPSOff();
                 resultad = Crono.getText().toString();
                 startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
                 finish();
@@ -120,7 +130,7 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
 
         int hora = (int) ((elapsedMillis / (aHoras)));
         int millis = (int) elapsedMillis % 1000;
-        String tiempo =  String.format("%02d:%02d:%02d:%03d"
+        String tiempo = String.format("%02d:%02d:%02d:%03d"
                 , hora, minuto, segundos, millis);
         Toast.makeText(CronoActivity.this, "Tiempo Transcurrido: " + tiempo,
                 Toast.LENGTH_SHORT).show();
@@ -146,7 +156,7 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
 
 
                 })
-                .setNeutralButton("Configuración",new DialogInterface.OnClickListener() {
+                .setNeutralButton("Configuración", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -162,32 +172,93 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
         dialog.show();
     }
 
+    public void stopUsingGPS() {
+        if (locationManager != null) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            locationManager.removeUpdates(this);
+            isGPSEnabled = locationManager
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+            locationManager = null;
+        }
+    }
 
     @Override
     public void onLocationChanged(Location location) {
-    if(location!= null){
-        if(l.getLatitude() != location.getLatitude()) {
-            puntosLat.add(location.getLatitude());
-            puntosLong.add(location.getLongitude());
+        if (location != null) {
+            if (l.getLatitude() != location.getLatitude()) {
+                puntosLat.add(location.getLatitude());
+                puntosLong.add(location.getLongitude());
 
-            Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
-                    Toast.LENGTH_SHORT).show();
-            Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                    Toast.LENGTH_SHORT).show();
-            distancia += updateDistancia;
+                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
+                        Toast.LENGTH_SHORT).show();
+                distancia += updateDistancia;
+            }
 
-            Toast.makeText(CronoActivity.this, "POS vector" + distancia,
-                    Toast.LENGTH_SHORT).show();
+
         }
-
-
-    }
     }
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+    protected void onResume() {
+        super.onResume();
 
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.removeUpdates(this);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.removeUpdates(this);
+
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+switch (status){
+
+
+
+}
+    }
+
+
 
     @Override
     public void onProviderEnabled(String provider) {
@@ -197,19 +268,6 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
     @Override
     public void onProviderDisabled(String provider) {
 
-    }
-
-
-    private void turnGPSOff(){
-        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-
-        if(provider.contains("gps")){ //if gps is enabled
-            final Intent poke = new Intent();
-            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
-            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-            poke.setData(Uri.parse("3"));
-            sendBroadcast(poke);
-        }
     }
 
     public static double distancia = 0;

@@ -14,7 +14,7 @@ public class AcercaDeActivity extends AppCompatActivity {
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AcercaDeActivity.this, Inicio.class));
+                startActivity(new Intent(AcercaDeActivity.this, incioDrawer.class));
                 finish();
             }
         });

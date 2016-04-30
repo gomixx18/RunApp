@@ -68,7 +68,11 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAGfhLT0-ynswwcFME2FYRiVawj9DzhojA" />
 
-        <activity android:name=".Tips"></activity>
+        <activity android:name=".Tips" />
+        <activity
+            android:name=".incioDrawer"
+            android:label="Inicio"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
