@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:id="@+id/chronometer"
-        android:background="#ff4b1a"
+        android:background="#fd2901"
         android:format="00:00:00"
         android:text="00:00:00"
         android:elegantTextHeight="true"

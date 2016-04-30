@@ -96,12 +96,16 @@ public class incioDrawer extends AppCompatActivity
 
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(incioDrawer.this, VerRecorridos.class));
+            finish();
         } else if (id == R.id.nav_slideshow) {
             startActivity(new Intent(incioDrawer.this, CambiarDatos.class));
+            finish();
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(incioDrawer.this, Tips.class));
+            finish();
         } else if (id == R.id.nav_share) {
             startActivity(new Intent(incioDrawer.this, AcercaDeActivity.class));
+            finish();
 
         }
 
