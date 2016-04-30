@@ -13,18 +13,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.runapp.runapp.Modelo.GestorBD;
 
 public class incioDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    public final GestorBD gestorBD = new GestorBD(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incio_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+        String username = gestorBD.getUsername();
+        String username1 = gestorBD.getNombre();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -34,6 +38,20 @@ public class incioDrawer extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+
+        TextView name = (TextView)header.findViewById(R.id.nombre);
+        TextView usuario = (TextView)header.findViewById(R.id.usuario);
+        name.setText(username1);
+        usuario.setText(username);
+
+
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(incioDrawer.this, CronoActivity.class));
+            }
+        });
     }
 
     @Override

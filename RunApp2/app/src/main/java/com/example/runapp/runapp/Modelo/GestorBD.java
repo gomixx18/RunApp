@@ -141,7 +141,23 @@ public class GestorBD extends SQLiteOpenHelper {
         return username;
     }
 
+    public String getNombre(){
 
+        String username = "";
+        ArrayList<String> array_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Usuario", null );
+
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            username = res.getString(res.getColumnIndex("Nombre"));
+            username += " " + res.getString(res.getColumnIndex("Apellido"));
+            res.moveToNext();
+        }
+
+        return username;
+    }
 
 
     public String getMensajeError(){

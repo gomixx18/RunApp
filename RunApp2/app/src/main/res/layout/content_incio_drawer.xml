@@ -12,4 +12,16 @@
     tools:context="com.example.runapp.runapp.incioDrawer"
     tools:showIn="@layout/app_bar_incio_drawer">
 
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Comenzar Recorrido"
+        android:id="@+id/button7"
+        android:layout_marginTop="77dp"
+        android:background="#0014f1"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
