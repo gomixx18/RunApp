@@ -101,7 +101,7 @@ public class incioDrawer extends AppCompatActivity
             startActivity(new Intent(incioDrawer.this, CambiarDatos.class));
             finish();
         } else if (id == R.id.nav_manage) {
-            startActivity(new Intent(incioDrawer.this, Tips.class));
+            startActivity(new Intent(incioDrawer.this, MainActivity.class));
             finish();
         } else if (id == R.id.nav_share) {
             startActivity(new Intent(incioDrawer.this, AcercaDeActivity.class));
