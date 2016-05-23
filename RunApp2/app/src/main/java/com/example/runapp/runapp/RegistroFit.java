@@ -50,7 +50,7 @@ public class RegistroFit extends AppCompatActivity {
                         peso,
                         estatura));
 
-                startActivity(new Intent(RegistroFit.this, Inicio.class));
+                startActivity(new Intent(RegistroFit.this, incioDrawer.class));
             }
         });
     }

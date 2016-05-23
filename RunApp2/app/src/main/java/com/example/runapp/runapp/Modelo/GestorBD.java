@@ -124,6 +124,7 @@ public class GestorBD extends SQLiteOpenHelper {
     }
 
 
+    // Retorna el username del usuario
     public String getUsername(){
 
         String username = "";
@@ -141,6 +142,9 @@ public class GestorBD extends SQLiteOpenHelper {
         return username;
     }
 
+
+
+    // Retorna el nombre + apellido del usuario
     public String getNombre(){
 
         String username = "";
@@ -164,6 +168,120 @@ public class GestorBD extends SQLiteOpenHelper {
 
         return mensajeError;
     }
+
+
+
+    // Retorna la edad del usuario
+    public String getEdad(){
+
+        String edad = "";
+        ArrayList<String> array_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Usuario", null );
+
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            edad = res.getString(res.getColumnIndex("Edad"));
+            res.moveToNext();
+        }
+
+        return edad;
+    }
+
+
+
+
+    // Retorna el peso del usuario
+    public String getPeso(){
+
+        String peso = "";
+        ArrayList<String> array_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Usuario", null );
+
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            peso = res.getString(res.getColumnIndex("Peso"));
+            res.moveToNext();
+        }
+
+        return peso;
+    }
+
+
+
+    // Retorna la estatura del usuario
+    public String getEstatura(){
+
+        String estatura = "";
+        ArrayList<String> array_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Usuario", null );
+
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            estatura = res.getString(res.getColumnIndex("Estatura"));
+            res.moveToNext();
+        }
+
+        return estatura;
+    }
+
+
+
+    // actualiza edad del usuario
+    public boolean actualizaEdad(String edad){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues valor = new ContentValues();
+            valor.put(edadUs, edad);
+            db.update(nombre_tabla_Us, valor, "ID=1", null);
+            return true;
+
+        }catch (SQLiteException s){
+            mensajeError = s.getMessage();
+            return false;
+        }
+    }
+
+
+    // actualiza peso del usuario
+    public boolean actualizaPeso(String peso){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues valor = new ContentValues();
+            valor.put(pesoUs, peso);
+            db.update(nombre_tabla_Us, valor, "ID=1", null);
+            return true;
+
+        }catch (SQLiteException s){
+            mensajeError = s.getMessage();
+            return false;
+        }
+    }
+
+
+    // actualiza estatura del usuario
+    public boolean actualizaEstatura(String estatura){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues valor = new ContentValues();
+            valor.put(estaturaUs, estatura);
+            db.update(nombre_tabla_Us, valor, "ID=1", null);
+            return true;
+
+        }catch (SQLiteException s){
+            mensajeError = s.getMessage();
+            return false;
+        }
+    }
+
+
+
+
 
 
 
