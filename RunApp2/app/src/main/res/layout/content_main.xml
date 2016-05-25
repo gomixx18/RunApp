@@ -2,21 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.runapp.runapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="false">
-        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="16dp" android:orientation="vertical" android:measureWithLargestChild="false" android:nestedScrollingEnabled="false">
-            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Consejos de Nutricion" android:id="@+id/nutri"/><fragment android:layout_width="match_parent" android:layout_height="wrap_content" android:name="com.example.runapp.runapp.BlankFragment" android:id="@+id/fragment" android:layout_gravity="right"/>
-            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Calendario de Carrera 2016" android:id="@+id/cal"/><fragment android:layout_width="match_parent" android:layout_height="wrap_content" android:name="com.example.runapp.runapp.BlankFragment" android:id="@+id/fragment2"/>
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Tips en Carrera" android:id="@+id/car" android:layout_gravity="right"/><fragment android:layout_width="fill_parent" android:layout_height="wrap_content" android:name="com.example.runapp.runapp.BlankFragment" android:id="@+id/fragment3" android:layout_gravity="center_horizontal"/><Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Las tennis ideales" android:id="@+id/button8" android:textAlignment="center"/>
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="false"
+        android:layout_alignParentEnd="false">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="0dp" android:orientation="vertical" android:measureWithLargestChild="false" android:nestedScrollingEnabled="false">
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Consejos de Nutricion" android:id="@+id/nutri"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.runapp.runapp.nutricionFragment"
+                android:id="@+id/fragment" />
+
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Calendario de Carrera 2016" android:id="@+id/cal"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.runapp.runapp.BlankFragment"
+                android:id="@+id/fragment2"
+                android:layout_gravity="center_horizontal" />
+
+            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Tips en Carrera" android:id="@+id/car" android:layout_gravity="right"/>
+
+            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Las tennis ideales" android:id="@+id/tennis" android:textAlignment="center"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.runapp.runapp.Fragmentopies"
+                android:id="@+id/fragment4"
+                android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
