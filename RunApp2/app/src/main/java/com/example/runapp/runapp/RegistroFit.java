@@ -19,7 +19,7 @@ public class RegistroFit extends AppCompatActivity {
         findViewById(R.id.btnAnterior).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistroFit.this, RegistroPass.class));
+                startActivity(new Intent(RegistroFit.this, ActividadMain.class));
             }
         });
         findViewById(R.id.btnRegistrar).setOnClickListener(new View.OnClickListener() {

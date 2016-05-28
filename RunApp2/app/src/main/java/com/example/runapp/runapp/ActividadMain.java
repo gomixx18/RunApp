@@ -28,7 +28,7 @@ public class ActividadMain extends AppCompatActivity {
                 EditText textoEmail = (EditText)findViewById(R.id.editCorreo);
                 email = textoEmail.getText().toString();
 
-                startActivity(new Intent(ActividadMain.this, RegistroPass.class));
+                startActivity(new Intent(ActividadMain.this, RegistroFit.class));
             }
         });
 
