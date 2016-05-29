@@ -27,6 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignEnd="@+id/txtPeso"
             android:layout_marginTop="44dp"
+            android:textColor="#ff4747" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -35,6 +36,8 @@
             android:ems="10"
             android:id="@+id/editEdad"
             android:hint="@string/edad"
+            android:textColor="#ff4747"
+            android:textColorHint="#ff4747"
             android:backgroundTint="#ffffff" />
 
         <TextView
@@ -44,6 +47,7 @@
             android:text="@string/peso"
             android:id="@+id/txtPeso"
             android:layout_marginTop="24dp"
+            android:textColor="#ff4747" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -56,6 +60,8 @@
             android:layout_below="@+id/txtPeso"
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
+            android:textColorHint="#ff4747"
+            android:textColor="#ff4747"
             android:backgroundTint="#ffffff" />
 
         <TextView
@@ -68,6 +74,7 @@
             android:layout_below="@+id/editPeso"
             android:layout_alignStart="@+id/txtEdad"
             android:layout_marginTop="22dp"
+            android:textColor="#ff4747" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -79,6 +86,9 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtEstatura"
             android:layout_alignParentEnd="true"
+            android:textColor="#ff4747"
+            android:backgroundTint="#ffffff"
+            android:textColorHint="#ff4747" />
 
     </LinearLayout>
 
@@ -104,6 +114,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:textStyle="normal|bold|italic"
+        android:textColor="#9a2a08" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
