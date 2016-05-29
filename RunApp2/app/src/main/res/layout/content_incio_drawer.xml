@@ -13,15 +13,23 @@
     tools:showIn="@layout/app_bar_incio_drawer">
 
     <Button
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Comenzar Recorrido"
         android:id="@+id/button7"
-        android:layout_marginTop="77dp"
-        android:background="#0014f1"
+        android:background="@drawable/roundbtn"
         android:textStyle="bold"
         android:textSize="15dp"
         android:textColor="#ffffff"
+        android:layout_below="@+id/imageEntrada"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageEntrada"
+        android:src="@drawable/imageninicio"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
