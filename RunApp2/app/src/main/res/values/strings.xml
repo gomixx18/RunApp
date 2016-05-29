@@ -12,8 +12,8 @@
     <string name="datosPer">Datos Personales</string>
     <string name="sesion">Inicio de Sesión</string>
     <string name="edad">Edad</string>
-    <string name="peso">Peso</string>
-    <string name="estatura">Estatura</string>
+    <string name="peso">Peso (kg)</string>
+    <string name="estatura">Estatura (m)</string>
     <string name="anterior">Anterior</string>
     <string name="title_activity_inicio">Inicio</string>
 

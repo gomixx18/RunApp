@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.runapp.runapp.RegistroFit">
+    tools:context="com.example.runapp.runapp.RegistroFit"
+    android:background="@drawable/fitness_sunset">
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,15 +26,16 @@
             android:id="@+id/txtEdad"
             android:layout_alignParentTop="true"
             android:layout_alignEnd="@+id/txtPeso"
-            android:layout_marginTop="44dp" />
+            android:layout_marginTop="44dp"
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:ems="10"
             android:id="@+id/editEdad"
-            android:hint="@string/edad" />
+            android:hint="@string/edad"
+            android:backgroundTint="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,19 +43,20 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/peso"
             android:id="@+id/txtPeso"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/editPeso"
             android:hint="@string/peso"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtPeso"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,20 +64,21 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/estatura"
             android:id="@+id/txtEstatura"
+
             android:layout_below="@+id/editPeso"
             android:layout_alignStart="@+id/txtEdad"
-            android:layout_marginTop="22dp" />
+            android:layout_marginTop="22dp"
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/editEstatura"
             android:hint="@string/estatura"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtEstatura"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
 
     </LinearLayout>
 
@@ -99,7 +103,7 @@
         android:id="@+id/txtFitness"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold|italic" />
+        android:textStyle="normal|bold|italic"
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -112,6 +116,7 @@
         android:clickable="false"
         android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

@@ -81,6 +81,10 @@ public class RegistroFit extends AppCompatActivity {
                 try {
                     Integer.parseInt(edad);
                     edadTemporal = Integer.parseInt(edad);
+                    if(edadTemporal > 100){
+                        Toast.makeText(RegistroFit.this, "La edad esta errónea",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (NumberFormatException exception) {
                     sonNumeros = false;
@@ -93,11 +97,17 @@ public class RegistroFit extends AppCompatActivity {
                     try {
                         Float.parseFloat(peso);
                         pesoTemporal = Float.parseFloat(peso);
+                        if(pesoTemporal > 300){
+                            Toast.makeText(RegistroFit.this, "El peso es incorrecto",
+                                    Toast.LENGTH_SHORT).show();
+                            sonNumeros =false;
+                        }
 
                     } catch (NumberFormatException exception) {
                         sonNumeros = false;
                         Toast.makeText(RegistroFit.this, "El peso debe ser un dato numérico",
                                 Toast.LENGTH_SHORT).show();
+                        sonNumeros = false;
                     }
                 }
 
@@ -106,7 +116,11 @@ public class RegistroFit extends AppCompatActivity {
                     try {
                         Float.parseFloat(estatura);
                         estaturaTemporal = Float.parseFloat(estatura);
-
+                        if(estaturaTemporal > 3.0){
+                            Toast.makeText(RegistroFit.this, "La estatura es incorrecta",
+                                    Toast.LENGTH_SHORT).show();
+                            sonNumeros = false;
+                        }
                     } catch (NumberFormatException exception) {
                         sonNumeros = false;
                         Toast.makeText(RegistroFit.this, "La estatura debe ser un dato numérico",

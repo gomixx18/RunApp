@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.runapp.runapp.ActividadMain"
-    android:background="@android:color/transparent">
+    android:background="@drawable/fitness">
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,7 +26,8 @@
             android:id="@+id/txtPass1"
             android:layout_alignParentTop="true"
             android:layout_alignEnd="@+id/txtApellido"
-            android:layout_marginTop="44dp" />
+            android:layout_marginTop="44dp"
+            android:textColor="#FF9A2A08" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -37,7 +38,9 @@
             android:layout_below="@+id/txtPass1"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:hint="@string/nombre" />
+            android:hint="@string/nombre"
+            android:backgroundTint="#ffffff"
+            android:textColorHint="#FF9A2A08"
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/apellido"
             android:id="@+id/txtApellido"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:textColor="#FF9A2A08" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -57,7 +61,9 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtApellido"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColorHint="#FF9A2A08"
+            android:backgroundTint="#ffffff"
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +73,8 @@
             android:id="@+id/usuario"
             android:layout_below="@+id/editApellido"
             android:layout_alignStart="@+id/txtPass1"
-            android:layout_marginTop="22dp" />
+            android:layout_marginTop="22dp"
+            android:textColor="#FF9A2A08" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -78,7 +85,9 @@
             android:hint="@string/usuario"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/usuario"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColorHint="#FF9A2A08"
+            android:backgroundTint="#ffffff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,7 +97,8 @@
             android:id="@+id/txtCorreo"
             android:layout_marginTop="29dp"
             android:layout_below="@+id/editUser"
-            android:layout_alignStart="@+id/usuario" />
+            android:layout_alignStart="@+id/usuario"
+            android:textColor="#FF9A2A08" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -96,7 +106,9 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/editCorreo"
-            android:hint="@string/correo" />
+            android:hint="@string/correo"
+            android:textColorHint="#FF9A2A08"
+            android:backgroundTint="#ffffff" />
 
     </LinearLayout>
 
@@ -109,7 +121,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:textStyle="normal|bold|italic"
-        android:editable="false" />
+        android:editable="false"
 
     <Button
         style="?android:attr/buttonStyleSmall"
