@@ -113,26 +113,15 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnSiguiente"
         android:text="@string/siguiente"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@android:color/transparent"
+        android:background="@drawable/roundbtn"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
         android:clickable="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnAnterior"
-        android:text="@string/anterior"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@android:color/transparent"
-        android:clickable="false"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

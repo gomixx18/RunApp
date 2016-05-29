@@ -80,12 +80,13 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:id="@+id/btnRegistrar"
         android:text="Terminar Registro"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@android:color/transparent"
+        android:background="@drawable/roundbtn"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
         android:clickable="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
@@ -109,6 +110,7 @@
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
         android:clickable="false"
+        android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 

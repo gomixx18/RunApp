@@ -4,7 +4,7 @@
     <string name="apellido">Apellido</string>
     <string name="usuario">Usuario</string>
     <string name="usuarioNom">Nombre de Usuario</string>
-    <string name="correo">Correo Electronico</string>
+    <string name="correo">Correo Electrónico</string>
     <string name="contrasena">Contraseña</string>
     <string name="contrasena2">Confirmar Contraseña</string>
     <string name="siguiente">Siguiente</string>
