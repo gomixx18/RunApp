@@ -3,19 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/verDatos"
 
             android:title="Ver mis Datos Personales" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/verRecorridos"
 
             android:title="Ver Recorridos" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/cambiarDatos"
 
             android:title="Cambiar Datos Personales" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/verTips"
 
             android:title="Tips" />
     </group>
@@ -23,7 +23,7 @@
     <item android:title="Sistema">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/acercaDeId"
 
                 android:title="Acerca De" />
 

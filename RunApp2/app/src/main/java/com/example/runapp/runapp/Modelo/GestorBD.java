@@ -171,6 +171,26 @@ public class GestorBD extends SQLiteOpenHelper {
 
 
 
+    // Retorna la estatura del usuario
+    public String getEmail(){
+
+        String email = "";
+        ArrayList<String> array_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Usuario", null );
+
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            email = res.getString(res.getColumnIndex("Email"));
+            res.moveToNext();
+        }
+
+        return email;
+    }
+
+
+
     // Retorna la edad del usuario
     public String getEdad(){
 

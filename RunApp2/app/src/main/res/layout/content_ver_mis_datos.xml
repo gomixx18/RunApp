@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.runapp.runapp.verMisDatos"
+    tools:showIn="@layout/activity_ver_mis_datos">-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Datos Personales"
+        android:id="@+id/txtDatosPersonales"
+        android:textStyle="normal|bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nombre:"
+        android:id="@+id/txtNombre"
+        android:textStyle="bold"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/txtDatosPersonales"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Usuario:"
+        android:id="@+id/txtUsuario"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/txtNombre"
+        android:layout_alignParentStart="true" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email:"
+        android:id="@+id/txtCorreo"
+        android:layout_marginTop="35dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtUsuario"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Edad:"
+        android:id="@+id/txtEdad"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtCorreo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="87dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Peso:"
+        android:id="@+id/txtPeso"
+        android:layout_marginTop="33dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtEdad"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Estatura:"
+        android:id="@+id/txtEstatura"
+        android:layout_marginTop="35dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtPeso"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNombreMostrar"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:editable="false"
+        android:background="#00000000"
+        android:layout_above="@+id/txtUsuario"
+        android:layout_alignStart="@+id/txtDatosPersonales" />
+
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editEmailMostrar"
+        android:background="#00000000"
+        android:editable="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/txtEdad"
+        android:layout_alignStart="@+id/editUserMostrar" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Fitness"
+        android:id="@+id/txtFitnessPersonales"
+        android:textStyle="normal|bold|italic"
+        android:layout_above="@+id/editEdadMostrar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
+
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUserMostrar"
+        android:background="#00000000"
+        android:editable="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/txtCorreo"
+        android:layout_alignStart="@+id/editNombreMostrar" />
+
+
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPesoMostrar"
+        android:background="#00000000"
+        android:editable="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/txtEstatura"
+        android:layout_alignStart="@+id/editEstaturaMostrar" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editEdadMostrar"
+        android:background="#00000000"
+        android:editable="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/txtPeso"
+        android:layout_alignStart="@+id/editEmailMostrar" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editEstaturaMostrar"
+        android:background="#00000000"
+        android:editable="false"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBottom="@+id/txtEstatura"
+        android:layout_alignStart="@+id/editEdadMostrar" />
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+

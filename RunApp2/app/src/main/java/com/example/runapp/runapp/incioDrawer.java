@@ -92,18 +92,20 @@ public class incioDrawer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.verDatos) {
+            startActivity(new Intent(incioDrawer.this, verMisDatos.class));
+            finish();
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.verRecorridos) {
             startActivity(new Intent(incioDrawer.this, VerRecorridos.class));
             finish();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.cambiarDatos) {
             startActivity(new Intent(incioDrawer.this, CambiarDatos.class));
             finish();
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.verTips) {
             startActivity(new Intent(incioDrawer.this, MainActivity.class));
             finish();
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.acercaDeId) {
             startActivity(new Intent(incioDrawer.this, AcercaDeActivity.class));
             finish();
 
