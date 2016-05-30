@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -21,57 +23,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.runapp.runapp.Modelo.GPS;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CronoActivity extends AppCompatActivity implements LocationListener {
+public class CronoActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_crono);
-
-
         start = (Button) findViewById(R.id.button2);
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
         stop.setClickable(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                updateTiempo,
-                updateDistancia, this);
-
-        List<String> providers = locationManager.getProviders(true);
 
 
-        for (int i = 0; i < providers.size(); i++) {
-            l = locationManager.getLastKnownLocation(providers.get(i));
-            if (l != null) {
-                latitud = l.getLatitude();
-                longitud = l.getLongitude();
-                break;
-            }
-        }
-        isGPSEnabled = locationManager
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-
-        isNetworkEnabled = locationManager
-                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         Crono.setText("00:00:00");
         Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -92,19 +62,82 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isGPSEnabled) {
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    muestraAlerta();
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                        if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                            return;
+                        } else {
+                            locationManager.removeUpdates(locationListener);
+                        }
+                    } else {
+                        locationManager.removeUpdates(locationListener);
+                    }
+
+                    l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
                     Crono.setText("00:00:00");
                     Crono.setBase(SystemClock.elapsedRealtime());
                     stop.setClickable(true);
-                    Crono.start();
 
-                } else {
+                    if(l!=null){
 
-                    muestraAlerta();
+
+                    locationListener = new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) {
+
+                        }
+
+                        @Override
+                        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                        }
+
+                        @Override
+                        public void onProviderEnabled(String provider) {
+                            if (isGPSEnabled) {
+                                Crono.start();
+                                start.setClickable(false);
+                            }
+                        }
+
+                        @Override
+                        public void onProviderDisabled(String provider) {
+
+                        }
+
+
+                    };
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                        if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                            return;
+                        } else {
+                            locationManager.requestLocationUpdates(
+                                    LocationManager.GPS_PROVIDER,
+                                    updateTiempo,
+                                    updateDistancia, locationListener);
+                        }
+                    } else {
+                        locationManager.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                updateTiempo,
+                                updateDistancia, locationListener);
+                    }
+
+                }else{
+                        Toast.makeText(CronoActivity.this, "no entre ",
+                                Toast.LENGTH_SHORT).show();
+                        muestraAlerta();
+                    }
                 }
             }
         });
-
 
         stop.setOnClickListener(new View.OnClickListener() {
 
@@ -112,7 +145,6 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
             public void onClick(View v) {
                 Crono.stop();
                 tiempoTranscurrido();
-                stopUsingGPS();
                 stop.setClickable(false);
                 resultad = Crono.getText().toString();
                 startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
@@ -122,7 +154,59 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
 
     }
 
-    private void tiempoTranscurrido() {
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.removeUpdates(locationListener);
+            }
+        } else {
+            locationManager.removeUpdates(locationListener);
+        }
+
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+    }
+
+    private void muestraAlerta() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Habilitar Localización")
+                .setMessage("Su GPS está apagado.\nEncienda su GPS")
+                .setCancelable(true)
+                .setPositiveButton("Configuración", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+
+                    }
+
+
+                });
+
+
+        dialog.show();
+    }
+
+    public void tiempoTranscurrido() {
         elapsedMillis = SystemClock.elapsedRealtime() - Crono.getBase();
 
         int segundos = (int) (elapsedMillis / 1000) % 60;
@@ -136,140 +220,8 @@ public class CronoActivity extends AppCompatActivity implements LocationListener
                 Toast.LENGTH_SHORT).show();
     }
 
-    private void muestraAlerta() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Habilitar Localización")
-                .setMessage("Su GPS está apagado.\nEncienda su GPS")
-                .setCancelable(true)
-                .setPositiveButton("Fin", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        startActivity(new Intent(CronoActivity.this, CronoActivity.class));
-                        finish();
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
 
-                    }
-
-
-                })
-                .setNeutralButton("Configuración", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(myIntent);
-
-                        isGPSEnabled = locationManager
-                                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-                    }
-
-
-                });
-
-        dialog.show();
-    }
-
-    public void stopUsingGPS() {
-        if (locationManager != null) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            locationManager.removeUpdates(this);
-            isGPSEnabled = locationManager
-                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
-            locationManager = null;
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        if (location != null) {
-            if (l.getLatitude() != location.getLatitude()) {
-                puntosLat.add(location.getLatitude());
-                puntosLong.add(location.getLongitude());
-
-                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
-                        Toast.LENGTH_SHORT).show();
-                Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                        Toast.LENGTH_SHORT).show();
-                distancia += updateDistancia;
-            }
-
-
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.removeUpdates(this);
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.removeUpdates(this);
-
-    }
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-switch (status){
-
-
-
-}
-    }
-
-
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
+    LocationListener locationListener;
     public static double distancia = 0;
     Chronometer Crono;
     Button start,stop;
@@ -278,6 +230,7 @@ switch (status){
     public static long elapsedMillis;
     public static String resultad;
     LocationManager locationManager;
+    Location actual;
     public static boolean isGPSEnabled = false;
     public static boolean isNetworkEnabled = false;
     private static final long updateDistancia = 5;
@@ -287,6 +240,8 @@ switch (status){
     Location l = null;
     public static ArrayList<Double> puntosLat = new ArrayList<>();
     public static ArrayList<Double> puntosLong = new ArrayList<>();
+    AlertDialog alert = null;
+
 }
 
 

@@ -23,12 +23,18 @@
 
             <fragment
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:name="com.example.runapp.runapp.BlankFragment"
-                android:id="@+id/fragment2"
-                android:layout_gravity="center_horizontal" />
+                android:layout_height="fill_parent"
+                android:name="com.example.runapp.runapp.calendario"
+                android:id="@+id/fragment2" />
 
             <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Tips en Carrera" android:id="@+id/car" android:layout_gravity="right"/>
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.example.runapp.runapp.tipscarrera"
+                android:id="@+id/fragment3"
+                android:layout_gravity="right" />
 
             <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Las tennis ideales" android:id="@+id/tennis" android:textAlignment="center"/>
 

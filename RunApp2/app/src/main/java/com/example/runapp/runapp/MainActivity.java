@@ -33,18 +33,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.fragment).setVisibility(View.GONE);
-        //findViewById(R.id.fragment2).setVisibility(View.GONE);
-        //findViewById(R.id.fragment3).setVisibility(View.GONE);
+        findViewById(R.id.fragment2).setVisibility(View.GONE);
+        findViewById(R.id.fragment3).setVisibility(View.GONE);
         findViewById(R.id.fragment4).setVisibility(View.GONE);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
 
         findViewById(R.id.nutri).setOnClickListener(new View.OnClickListener() {
@@ -70,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (valor2) {
-                    //findViewById(R.id.fragment2).setVisibility(View.VISIBLE);
-                    //findViewById(R.id.fragment2).setMinimumHeight(300);
+                    findViewById(R.id.fragment2).setVisibility(View.VISIBLE);
+                    findViewById(R.id.fragment2).setMinimumHeight(300);
                     valor2 = false;
 
                 } else {
-                    //findViewById(R.id.fragment2).setVisibility(View.GONE);
-                    //findViewById(R.id.fragment2).setMinimumHeight(0);
+                    findViewById(R.id.fragment2).setVisibility(View.GONE);
+                    findViewById(R.id.fragment2).setMinimumHeight(0);
                     valor2 = true;
                 }
             }
@@ -87,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (valor3) {
-                    //findViewById(R.id.fragment3).setVisibility(View.VISIBLE);
-                    //findViewById(R.id.fragment3).setMinimumHeight(300);
+                    findViewById(R.id.fragment3).setVisibility(View.VISIBLE);
+                    findViewById(R.id.fragment3).setMinimumHeight(300);
                     valor3 = false;
 
                 } else {
-                    //findViewById(R.id.fragment3).setVisibility(View.GONE);
-                    //findViewById(R.id.fragment3).setMinimumHeight(0);
+                    findViewById(R.id.fragment3).setVisibility(View.GONE);
+                    findViewById(R.id.fragment3).setMinimumHeight(0);
                     valor3 = true;
                 }
             }

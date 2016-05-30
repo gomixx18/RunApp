@@ -1,10 +1,12 @@
 package com.example.runapp.runapp;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -31,8 +33,8 @@ public class Mapa extends AppCompatActivity implements LocationListener {
     TextView txtLat;
     String lat;
     String provider;
-    protected double latitude,longitude;
-    protected boolean gps_enabled,network_enabled;
+    protected double latitude, longitude;
+    protected boolean gps_enabled, network_enabled;
     private static final long updateDistancia = 20;
     private static final long updateTiempo = 1000 * 5;
 
@@ -42,6 +44,11 @@ public class Mapa extends AppCompatActivity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 updateTiempo,
@@ -80,9 +87,9 @@ public class Mapa extends AppCompatActivity implements LocationListener {
     }
 
 
-    public void pintar(ArrayList<Double> puntosLat , ArrayList<Double> puntosLong ){
+    public void pintar(ArrayList<Double> puntosLat , ArrayList<Double> puntosLong){
 
-int j = 0;
+        int j = 0;
         for(int i = 0 ; i < puntosLat.size() - 1 ;i++) {
             j = i+1;
             PolylineOptions line =
