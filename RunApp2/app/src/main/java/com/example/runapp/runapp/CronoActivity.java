@@ -83,44 +83,58 @@ public class CronoActivity extends AppCompatActivity {
                     Crono.setBase(SystemClock.elapsedRealtime());
                     stop.setClickable(true);
 
-                    if(l!=null){
+                    if (l != null) {
 
 
-                    locationListener = new LocationListener() {
-                        @Override
-                        public void onLocationChanged(Location location) {
+                        locationListener = new LocationListener() {
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                if (location != null) {
+                                    if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
+                                        puntosLat.add(location.getLatitude());
+                                        puntosLong.add(location.getLongitude());
 
-                        }
+                                        Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
+                                                Toast.LENGTH_SHORT).show();
 
-                        @Override
-                        public void onStatusChanged(String provider, int status, Bundle extras) {
+                                        actual = location;
+                                    }
 
-                        }
 
-                        @Override
-                        public void onProviderEnabled(String provider) {
-                            if (isGPSEnabled) {
-                                Crono.start();
-                                start.setClickable(false);
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onProviderDisabled(String provider) {
+                            @Override
+                            public void onStatusChanged(String provider, int status, Bundle extras) {
 
-                        }
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String provider) {
+                                if (isGPSEnabled) {
+                                    Crono.start();
+                                    start.setClickable(false);
+                                }
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String provider) {
+
+                            }
 
 
-                    };
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        };
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                        if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-                            return;
-                        } else {
-                            locationManager.requestLocationUpdates(
-                                    LocationManager.GPS_PROVIDER,
-                                    updateTiempo,
+                                return;
+                            } else {
+                                locationManager.requestLocationUpdates(
+                                        LocationManager.GPS_PROVIDER,
+                                        updateTiempo,
                                     updateDistancia, locationListener);
                         }
                     } else {
