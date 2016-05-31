@@ -37,10 +37,10 @@ public class nutricionFragment extends Fragment {
     TextView a = (TextView) v.findViewById(R.id.textView);
     TextView b = (TextView) v.findViewById(R.id.textView20);
     TextView c = (TextView) v.findViewById(R.id.textView18);
+        leerFicheroRaw();
 
-    array.size();
     //
-    generaTexto(a,b,c);
+    generaTexto(a,b,c,array.size()-1);
     return v;
 
 }
@@ -73,20 +73,60 @@ public class nutricionFragment extends Fragment {
     }
 
 
-    public void generaTexto(TextView a , TextView b ,TextView c){
-        int num1=0;
-        int num2=7;
-        leerFicheroRaw();
+   /* public void generaTexto(TextView a , TextView b ,TextView c, int valor){
+        boolean si = false; boolean si2 = false;
+
         Random randomno = new Random();
+        int valor1 = randomno.nextInt(valor);
+        a.setText(array.get(valor1));
 
-        a.setText(array.get(randomno.nextInt(7)));
+        Random randomno2 = new Random();
+        int valor2;
+        do{
 
-        //int numAleatorio = (int) Math.floor(Math.random() * (num1 - (num2 + 1)) + (num2));
-        b.setText(array.get(randomno.nextInt(7)));
+         valor2 = randomno2.nextInt(valor);
+            if(valor2 != valor1){
+                si = true;
+            }
+        }while(!si);
 
-        //int numAleatorio = (int) Math.floor(Math.random() * (num1 - (num2 + 1)) + (num2));
-        c.setText(array.get(randomno.nextInt(7)));
+        if(si)
+        b.setText(array.get(valor2));
+
+        int valor3 = randomno.nextInt(valor);
+        do{
+            valor3 = randomno.nextInt(valor);
+            if(valor3 != valor1 && valor2 !=valor3){
+                si2 = true;
+            }
+        }while(si2);
+
+        if(!si2)
+        c.setText(array.get(valor3));
+    }*/
+
+
+    public void generaTexto(TextView a, TextView b, TextView c, int valor) {
+
+
+        Random randomno = new Random();
+        int valor1 = randomno.nextInt(valor);
+        a.setText(array.get(valor1));
+
+        int valor2;
+        do {
+            valor2 = randomno.nextInt(valor);
+        } while (valor1 == valor2);
+        b.setText(array.get(valor2));
+
+        int valor3;
+        do {
+            valor3 = randomno.nextInt(valor);
+    } while (valor1 == valor3 ||  valor3 == valor2);
+        c.setText(array.get(valor3));
     }
+
 }
+
 
 
