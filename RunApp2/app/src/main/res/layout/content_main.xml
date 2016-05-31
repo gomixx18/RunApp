@@ -11,7 +11,12 @@
     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="false"
         android:layout_alignParentEnd="false">
         <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="0dp" android:orientation="vertical" android:measureWithLargestChild="false" android:nestedScrollingEnabled="false">
-            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Consejos de Nutricion" android:id="@+id/nutri"/>
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Consejos de Nutricion" android:id="@+id/nutri"
+                android:background="#0014f1"
+                android:textStyle="normal|bold"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:layout_marginBottom="10dp" />
 
             <fragment
                 android:layout_width="match_parent"
@@ -19,7 +24,12 @@
                 android:name="com.example.runapp.runapp.nutricionFragment"
                 android:id="@+id/fragment" />
 
-            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Calendario de Carrera 2016" android:id="@+id/cal"/>
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Calendario de Carrera 2016" android:id="@+id/cal"
+                android:background="#0014f1"
+                android:textStyle="normal|bold"
+                android:textSize="16dp"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="10dp" />
 
             <fragment
                 android:layout_width="match_parent"
@@ -27,7 +37,12 @@
                 android:name="com.example.runapp.runapp.calendario"
                 android:id="@+id/fragment2" />
 
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Tips en Carrera" android:id="@+id/car" android:layout_gravity="right"/>
+            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Tips en Carrera" android:id="@+id/car" android:layout_gravity="right"
+                android:background="#0014f1"
+                android:textColor="#ffffff"
+                android:textStyle="normal|bold"
+                android:textSize="16dp"
+                android:layout_marginBottom="10dp" />
 
             <fragment
                 android:layout_width="match_parent"
@@ -36,7 +51,11 @@
                 android:id="@+id/fragment3"
                 android:layout_gravity="right" />
 
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Las tennis ideales" android:id="@+id/tennis" android:textAlignment="center"/>
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Las tennis ideales" android:id="@+id/tennis" android:textAlignment="center"
+                android:background="#0014f1"
+                android:textSize="16dp"
+                android:textStyle="normal|bold"
+                android:textColor="#ffffff" />
 
             <fragment
                 android:layout_width="match_parent"

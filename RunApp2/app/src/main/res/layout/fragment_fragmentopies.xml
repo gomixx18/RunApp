@@ -19,7 +19,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Tipos de Pisada"
         android:id="@+id/btnpisada"
         android:layout_alignParentTop="true"
         android:layout_gravity="right|top" />
@@ -48,7 +48,6 @@
         android:id="@+id/videoView"
         android:layout_below="@+id/button9"
         android:layout_centerHorizontal="true"
-        android:visibility="visible"
-        android:background="#ff1b1b" />
+        android:visibility="visible" />
 
 </RelativeLayout>
