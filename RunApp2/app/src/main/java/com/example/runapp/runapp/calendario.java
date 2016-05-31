@@ -1,7 +1,9 @@
 package com.example.runapp.runapp;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,20 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.example.runapp.runapp.Modelo.EventDecorator;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class calendario extends Fragment {
-    CalendarView calendar;
+    MaterialCalendarView calendar;
 
 
     public calendario() {
@@ -26,8 +36,20 @@ public class calendario extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendario, container, false);
-        calendar = (CalendarView) v.findViewById(R.id.calendarView);
-        initializeCalendar(calendar,v);
+        calendar = (MaterialCalendarView) v.findViewById(R.id.calendarView);
+        calendar.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Toast.makeText(widget.getContext(),date.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        //initializeCalendar(calendar,v);
+        Collection<CalendarDay> dias = new ArrayList<>();
+        dias.add(new CalendarDay(2016,4,29));
+        dias.add(new CalendarDay(2016,4,14));
+        dias.add(new CalendarDay(2016,4,10));
+        EventDecorator decorator = new EventDecorator(Color.RED,dias);
+        calendar.addDecorator(decorator);
         return v;
     }
 
