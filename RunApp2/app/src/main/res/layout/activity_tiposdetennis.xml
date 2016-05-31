@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.runapp.runapp.tiposdetennis">
+
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tennis Pronador"
+        android:id="@+id/pronador"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="right|top"
+        android:layout_alignEnd="@+id/tennisV" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tennis Supinador"
+        android:id="@+id/supipronador"
+        android:layout_below="@+id/pronador"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tennis neutral"
+        android:id="@+id/normal"
+        android:layout_below="@+id/supipronador"
+        android:layout_alignStart="@+id/tennisV" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tennisV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/normal"
+        android:layout_above="@+id/btnvolveratips">
+    </android.support.v4.view.ViewPager>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:id="@+id/btnvolveratips"
+        android:background="@drawable/roundbtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginBottom="5dp" />
+
+
+</RelativeLayout>

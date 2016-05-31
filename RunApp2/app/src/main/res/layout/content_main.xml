@@ -51,7 +51,7 @@
                 android:id="@+id/fragment3"
                 android:layout_gravity="right" />
 
-            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Las tennis ideales" android:id="@+id/tennis" android:textAlignment="center"
+            <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Tennis ideales y mi tipo de pisada" android:id="@+id/tennis" android:textAlignment="center"
                 android:background="#0014f1"
                 android:textSize="16dp"
                 android:textStyle="normal|bold"
