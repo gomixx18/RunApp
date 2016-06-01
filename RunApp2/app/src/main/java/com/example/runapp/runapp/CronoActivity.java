@@ -137,6 +137,7 @@ public class CronoActivity extends claseStatic {
     }
 
     public void muestraAlerta2() {
+
         final AlertDialog alertDialog = new AlertDialog.Builder(CronoActivity.this).create();
         alertDialog.setTitle("La sesion iniciara en\n");
 
@@ -156,13 +157,31 @@ public class CronoActivity extends claseStatic {
 
             @Override public void onFinish()
             { alertDialog.hide();
-
+                val1 = true;
             }
         }.start();
 
-        Crono.start();
 
-    }
+
+            Crono.start();
+            Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                @Override
+                public void onChronometerTick(Chronometer cArg) {
+                    long elapsedMillis = SystemClock.elapsedRealtime() - cArg.getBase();
+                    int h = (int) (elapsedMillis / 3600000);
+                    int m = (int) (elapsedMillis - h * 3600000) / 60000;
+                    int s = (int) (elapsedMillis - h * 3600000 - m * 60000) / 1000;
+                    String hh = h < 10 ? "0" + h : h + "";
+                    String mm = m < 10 ? "0" + m : m + "";
+                    String ss = s < 10 ? "0" + s : s + "";
+                    resultad = hh + ":" + mm + ":" + ss;
+                    cArg.setText(hh + ":" + mm + ":" + ss);
+                }
+            });
+        }
+
+
+
 
     public void tiempoTranscurrido() {
         elapsedMillis = SystemClock.elapsedRealtime() - Crono.getBase();
@@ -179,8 +198,8 @@ public class CronoActivity extends claseStatic {
     }
 
 
+    boolean  val1 = false;
 
-    long duracion = 5000;
     CountDownLatch latch;
     LocationListener locationListener;
     public static double distancia = 0;
