@@ -79,8 +79,6 @@ public class CronoActivity extends claseStatic implements LocationListener {
             actual = l;
         }
 
-
-
         isGPSEnabled = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
