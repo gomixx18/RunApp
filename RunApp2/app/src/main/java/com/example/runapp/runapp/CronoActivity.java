@@ -10,6 +10,7 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class CronoActivity extends claseStatic {
+public class CronoActivity extends claseStatic implements LocationListener {
 
 
 
@@ -49,6 +50,39 @@ public class CronoActivity extends claseStatic {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             muestraAlerta1();
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        updateTiempo,
+                        updateDistancia, CronoActivity.this);
+            }
+        } else {
+            locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    updateTiempo,
+                    updateDistancia, CronoActivity.this);
+        }
+
+
+
+        Toast.makeText(CronoActivity.this, "Aca estoy",
+                Toast.LENGTH_SHORT).show();
+        l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (l != null) {
+            latitud = l.getLatitude();
+            longitud = l.getLongitude();
+            actual = l;
+        }
+
+
+
+        isGPSEnabled = locationManager
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
 
 
@@ -56,9 +90,15 @@ public class CronoActivity extends claseStatic {
                 @Override
                 public void onClick(View v) {
                     if(claseStatic.valor == 1) {
-                        muestraAlerta2();
+
+                            if(val == 2) {
+                                start.setClickable(false);
+                                muestraAlerta2();
+
+                            }
                     }else{
-                        muestraAlerta2();
+                        start.setClickable(false);
+                            muestraAlerta2();
                     }
                 }
             });
@@ -69,6 +109,7 @@ public class CronoActivity extends claseStatic {
                     Crono.stop();
                     tiempoTranscurrido();
                     stop.setClickable(false);
+                    claseStatic.Distancia = ""+distancia;
                     startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
                     finish();
                 }
@@ -136,7 +177,8 @@ public class CronoActivity extends claseStatic {
                         cArg.setText(hh + ":" + mm + ":" + ss);
                     }
                 });
-                Crono.setBase(SystemClock.elapsedRealtime());
+                time = SystemClock.elapsedRealtime();
+                Crono.setBase(time);
                 Crono.start();
             }
         }.start();
@@ -158,9 +200,72 @@ public void tiempoTranscurrido() {
     }
 
 
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (location != null && location.getTime() >= time && time == 0) {
+            if(this.actual == null) {
+                this.actual = location;
+            } else if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
+                puntosLat.add(location.getLatitude());
+                puntosLong.add(location.getLongitude());
+
+                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
+                        Toast.LENGTH_SHORT).show();
+                CalculeDistancia(actual, location);
+                actual = location;
+
+            }
+        }
+    }
+
+
+    public void CalculeDistancia(Location viejo,Location actual)
+    {
+
+        distancia += (viejo.distanceTo(actual)/1000);
+        TextView a = (TextView) findViewById(R.id.textView16);
+        a.setText(""+distancia);
+
+    }
+
+
+
+    @Override
+    public void onProviderDisabled(final String pProvider) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(final String pProvider) {
+
+    }
+
+    @Override
+    public void onStatusChanged(final String pProvider, final int pStatus, final Bundle pExtras) {
+        switch(pStatus) {
+            case LocationProvider.AVAILABLE:
+                val = pStatus;
+                break;
+            case LocationProvider.OUT_OF_SERVICE:
+                val = pStatus;
+                break;
+            case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                val = pStatus;
+                break;
+        }
+    }
+
+
+
+
+
+static int val = 0;
     long time = 0;
     CountDownLatch latch;
-    LocationListener locationListener;
+    LocationListener mLocationListener;
     public static double distancia = 0;
     Chronometer Crono;
     Button start,stop;
@@ -182,7 +287,6 @@ public void tiempoTranscurrido() {
     AlertDialog alert = null;
 
 }
-
 
 
 

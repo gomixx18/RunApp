@@ -39,11 +39,12 @@ public class ResultadosActivity extends AppCompatActivity {
 
         if(claseStatic.valor == 1){
             tiempo.setText(CronoActivity.resultad);
+            distancia.setText(claseStatic.Distancia);
         }
         else{
             Toast.makeText(getApplicationContext(), claseStatic.tiempo, Toast.LENGTH_LONG).show();
             tiempo.setText(claseStatic.tiempo );
-            distancia.setText("0.0 KM");
+            distancia.setText("0.0");
             findViewById(R.id.btnImgMapa).setClickable(false);
         }
     }

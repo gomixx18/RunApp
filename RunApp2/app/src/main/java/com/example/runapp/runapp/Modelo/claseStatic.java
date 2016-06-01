@@ -9,4 +9,5 @@ public class claseStatic  extends AppCompatActivity {
 
     public static int valor;
     public static String tiempo;
+    public static String Distancia;
 }
