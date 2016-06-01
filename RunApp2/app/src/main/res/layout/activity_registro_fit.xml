@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/txtFitness"
-        android:layout_alignParentStart="true">
+        android:layout_alignEnd="@+id/btnRegistrar"
+        android:layout_marginTop="23dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,9 +37,9 @@
             android:ems="10"
             android:id="@+id/editEdad"
             android:hint="@string/edad"
-            android:textColor="#ff4747"
-            android:textColorHint="#ff4747"
-            android:backgroundTint="#ffffff" />
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:backgroundTint="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,8 +61,8 @@
             android:layout_below="@+id/txtPeso"
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
-            android:textColorHint="#ff4747"
-            android:textColor="#ff4747"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
             android:backgroundTint="#ffffff" />
 
         <TextView
@@ -86,9 +87,9 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtEstatura"
             android:layout_alignParentEnd="true"
-            android:textColor="#ff4747"
+            android:textColor="#ffffff"
             android:backgroundTint="#ffffff"
-            android:textColorHint="#ff4747" />
+            android:textColorHint="#ffffff" />
 
     </LinearLayout>
 
@@ -114,7 +115,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:textStyle="normal|bold|italic"
-        android:textColor="#9a2a08" />
+        android:textColor="#000000" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
