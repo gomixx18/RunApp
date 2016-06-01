@@ -158,7 +158,6 @@ public void tiempoTranscurrido() {
     }
 
 
-
     long time = 0;
     CountDownLatch latch;
     LocationListener locationListener;

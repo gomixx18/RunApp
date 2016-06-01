@@ -23,6 +23,10 @@ public class CustomCambioAdapter extends PagerAdapter {
             R.drawable.fitness_sunset,
             R.drawable.supernovaseis };
 
+    public int imagenes3[] = { R.drawable.fitness,
+            R.drawable.fitness_sunset,
+            R.drawable.supernovaseis };
+
     private Context context;
     private LayoutInflater inflater;
     private int number;
@@ -58,12 +62,12 @@ public class CustomCambioAdapter extends PagerAdapter {
         if(this.getNumber() == 1){
             int cant = imagenes2.length-1;
             ima.setImageResource(imagenes2[position]);
-            textv.setText("Imagen " + (position + 1)+ " de " + imagenes2.length);
+            textv.setText("Imagen " + (position + 1) + " de " + imagenes2.length);
 
         }
         if(this.getNumber() == 2){
-            ima.setImageResource(imagenes[position]);
-            textv.setText("Imagen " + position + " de " + imagenes.length );
+            ima.setImageResource(imagenes3[position]);
+            textv.setText("Imagen " + (position + 1)+ " de " + imagenes3.length );
         }
 
 
