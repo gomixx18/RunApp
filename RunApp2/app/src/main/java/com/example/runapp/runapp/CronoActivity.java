@@ -36,7 +36,6 @@ import java.util.concurrent.CountDownLatch;
 public class CronoActivity extends claseStatic implements LocationListener {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,6 @@ public class CronoActivity extends claseStatic implements LocationListener {
         }
 
 
-
         Toast.makeText(CronoActivity.this, "Aca estoy",
                 Toast.LENGTH_SHORT).show();
         l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -83,32 +81,43 @@ public class CronoActivity extends claseStatic implements LocationListener {
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
 
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (claseStatic.valor == 1) {
+                    start.setClickable(false);
+                    muestraAlerta2();
 
-            start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(claseStatic.valor == 1) {
-                                start.setClickable(false);
-                                muestraAlerta2();
 
-
-                    }else{
-                        start.setClickable(false);
-                            muestraAlerta2();
-                    }
+                } else {
+                    start.setClickable(false);
+                    muestraAlerta2();
                 }
-            });
-            stop.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+        stop.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    Crono.stop();
-                    tiempoTranscurrido();
-                    stop.setClickable(false);
-                    claseStatic.Distancia = ""+distancia;
+            @Override
+            public void onClick(View v) {
+                Crono.stop();
+                tiempoTranscurrido();
+                stop.setClickable(false);
+                claseStatic.Distancia = "" + distancia;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                    if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                        return;
+                    } else {
+                        locationManager.removeUpdates(CronoActivity.this);
+                    }
+                } else {
+                    locationManager.removeUpdates(CronoActivity.this);
+                }
+
                     startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
                     finish();
-                }
+            }
             });
         }
 
@@ -129,10 +138,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         claseStatic.valor = 0;
                     }
-
-
-                });
-
+       });
 
         dialog.show();
     }
