@@ -50,45 +50,18 @@ public class CronoActivity extends claseStatic {
             muestraAlerta1();
         }
 
-        Crono.setText("00:00:00");
 
-
-
-
-        if(claseStatic.valor == 1){
-            start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-
-                }
-            });
-            stop.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    Crono.stop();
-                    tiempoTranscurrido();
-                    stop.setClickable(false);
-                    resultad = Crono.getText().toString();
-                    claseStatic.tiempo = resultad;
-                    startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
-                    finish();
-                }
-            });
-        }else{
 
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    muestraAlerta2();
-
+                    if(claseStatic.valor == 1) {
+                        muestraAlerta2();
+                    }else{
+                        muestraAlerta2();
+                    }
                 }
             });
-
             stop.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -96,20 +69,11 @@ public class CronoActivity extends claseStatic {
                     Crono.stop();
                     tiempoTranscurrido();
                     stop.setClickable(false);
-
                     startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
                     finish();
                 }
             });
         }
-
-
-
-    }
-
-
-
-
 
     public void muestraAlerta1() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -139,7 +103,7 @@ public class CronoActivity extends claseStatic {
     public void muestraAlerta2() {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(CronoActivity.this).create();
-        alertDialog.setTitle("La sesion iniciara en\n");
+        alertDialog.setTitle("   La sesion iniciara en\n");
 
         final TextView v = new TextView(CronoActivity.this);
         v.setClickable(false);
@@ -156,50 +120,46 @@ public class CronoActivity extends claseStatic {
             }
 
             @Override public void onFinish()
-            { alertDialog.hide();
-                val1 = true;
+            {   alertDialog.hide();
+                Crono.setText("00:00:00");
+                Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                    @Override
+                    public void onChronometerTick(Chronometer cArg) {
+                        long elapsedMillis = SystemClock.elapsedRealtime() - cArg.getBase();
+                        int h = (int) (elapsedMillis / 3600000);
+                        int m = (int) (elapsedMillis - h * 3600000) / 60000;
+                        int s = (int) (elapsedMillis - h * 3600000 - m * 60000) / 1000;
+                        String hh = h < 10 ? "0" + h : h + "";
+                        String mm = m < 10 ? "0" + m : m + "";
+                        String ss = s < 10 ? "0" + s : s + "";
+                        resultad = hh + ":" + mm + ":" + ss;
+                        cArg.setText(hh + ":" + mm + ":" + ss);
+                    }
+                });
+                Crono.setBase(SystemClock.elapsedRealtime());
+                Crono.start();
             }
         }.start();
+ }
 
 
-
-            Crono.start();
-            Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                @Override
-                public void onChronometerTick(Chronometer cArg) {
-                    long elapsedMillis = SystemClock.elapsedRealtime() - cArg.getBase();
-                    int h = (int) (elapsedMillis / 3600000);
-                    int m = (int) (elapsedMillis - h * 3600000) / 60000;
-                    int s = (int) (elapsedMillis - h * 3600000 - m * 60000) / 1000;
-                    String hh = h < 10 ? "0" + h : h + "";
-                    String mm = m < 10 ? "0" + m : m + "";
-                    String ss = s < 10 ? "0" + s : s + "";
-                    resultad = hh + ":" + mm + ":" + ss;
-                    cArg.setText(hh + ":" + mm + ":" + ss);
-                }
-            });
-        }
-
-
-
-
-    public void tiempoTranscurrido() {
+public void tiempoTranscurrido() {
         elapsedMillis = SystemClock.elapsedRealtime() - Crono.getBase();
 
         int segundos = (int) (elapsedMillis / 1000) % 60;
         int minuto = (int) ((elapsedMillis / (aMinutos)) % 60);
 
         int hora = (int) ((elapsedMillis / (aHoras)));
-        int millis = (int) elapsedMillis % 1000;
-        String tiempo = String.format("%02d:%02d:%02d:%03d"
-                , hora, minuto, segundos, millis);
+
+        String tiempo = String.format("%02d:%02d:%02d"
+                , hora, minuto, segundos);
 
         claseStatic.tiempo = tiempo;
     }
 
 
-    boolean  val1 = false;
 
+    long time = 0;
     CountDownLatch latch;
     LocationListener locationListener;
     public static double distancia = 0;
@@ -223,5 +183,8 @@ public class CronoActivity extends claseStatic {
     AlertDialog alert = null;
 
 }
+
+
+
 
 
