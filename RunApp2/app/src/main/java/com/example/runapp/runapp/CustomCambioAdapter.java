@@ -14,18 +14,24 @@ import android.widget.TextView;
  */
 public class CustomCambioAdapter extends PagerAdapter {
 
-    public int imagenes[] = { R.drawable.adidasboost,
+    public int imagenes[] = { R.drawable.ponador1,
     R.drawable.gelpkayano,
-    R.drawable.supernovaseis };
+    R.drawable.supernovaseis,
+    R.drawable.pronador2
+    };
 
 
-    public int imagenes2[] = { R.drawable.fitness,
-            R.drawable.fitness_sunset,
-            R.drawable.supernovaseis };
+    public int imagenes2[] = { R.drawable.neutra2,
+            R.drawable.neutra3,
+            R.drawable.nuetra1,
+            R.drawable.neutra4
+    };
 
-    public int imagenes3[] = { R.drawable.fitness,
-            R.drawable.fitness_sunset,
-            R.drawable.supernovaseis };
+    public int imagenes3[] = { R.drawable.supi1,
+            R.drawable.supi2,
+            R.drawable.supi3,
+            R.drawable.supi3
+    };
 
     private Context context;
     private LayoutInflater inflater;
