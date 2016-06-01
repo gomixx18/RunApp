@@ -1,9 +1,11 @@
 package com.example.runapp.runapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,7 +22,9 @@ import com.example.runapp.runapp.Modelo.GestorBD;
 
 public class incioDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     public final GestorBD gestorBD = new GestorBD(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +64,21 @@ public class incioDrawer extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.question)
+                    .setTitle("¿Cerrar RunApp?")
+                    .setMessage("¿Está seguro que desea salir de RunApp?")
+                    .setPositiveButton("Sí", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            incioDrawer.super.onBackPressed();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
         }
     }
 

@@ -19,4 +19,10 @@ public class AcercaDeActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AcercaDeActivity.this, incioDrawer.class));
+    }
 }
