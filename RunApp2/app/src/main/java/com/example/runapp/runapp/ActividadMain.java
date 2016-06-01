@@ -1,5 +1,6 @@
 package com.example.runapp.runapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class ActividadMain extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_main);
+        actividadDatosPersonales = this;
 
         // En el caso de que esté en RegistroFit y oprime "Anterior",
         // se vuelven a cargar los datos (nombre, apellido, etc.) que digitó antes.
@@ -132,4 +134,9 @@ public class ActividadMain extends AppCompatActivity {
     private static String apellido = "";
     private static String username = "";
     private static String email = "";
+
+    // Variable static de la Actividad que se llama en Registro Fit.
+    // Es para poder hacerle finish a esta actividad desde RegistroFit.
+    // En el onCreate se le hace = this.
+    public static Activity actividadDatosPersonales;
 }

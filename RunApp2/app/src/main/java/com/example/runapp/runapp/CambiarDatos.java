@@ -37,6 +37,7 @@ public class CambiarDatos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CambiarDatos.this, incioDrawer.class));
+                finish();
             }
         });
 
@@ -103,6 +104,7 @@ public class CambiarDatos extends AppCompatActivity {
                         Toast.makeText(CambiarDatos.this, "Datos actualizados exitosamente",
                                 Toast.LENGTH_LONG).show();
                         startActivity(new Intent(CambiarDatos.this, incioDrawer.class));
+                        finish();
                     } else {
 
                         Toast.makeText(CambiarDatos.this, "No se pudieron actualizar los datos",

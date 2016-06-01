@@ -1,5 +1,6 @@
 package com.example.runapp.runapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,8 @@ public class RegistroFit extends AppCompatActivity {
                 estatura = textoEstatura.getText().toString();
 
                 startActivity(new Intent(RegistroFit.this, ActividadMain.class));
+                finish();
+                ActividadMain.actividadDatosPersonales.finish();
             }
         });
 
@@ -140,6 +143,8 @@ public class RegistroFit extends AppCompatActivity {
                             estaturaTemporal));
 
                     startActivity(new Intent(RegistroFit.this, incioDrawer.class));
+                    finish();
+                    ActividadMain.actividadDatosPersonales.finish();
                 }
             }
         });
