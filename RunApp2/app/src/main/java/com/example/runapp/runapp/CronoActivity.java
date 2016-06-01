@@ -90,12 +90,10 @@ public class CronoActivity extends claseStatic implements LocationListener {
                 @Override
                 public void onClick(View v) {
                     if(claseStatic.valor == 1) {
-
-                            if(val == 2) {
                                 start.setClickable(false);
                                 muestraAlerta2();
 
-                            }
+
                     }else{
                         start.setClickable(false);
                             muestraAlerta2();
@@ -204,20 +202,22 @@ public void tiempoTranscurrido() {
     @Override
     public void onLocationChanged(Location location) {
         if (location != null && location.getTime() >= time && time == 0) {
-            if(this.actual == null) {
-                this.actual = location;
-            } else if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
-                puntosLat.add(location.getLatitude());
-                puntosLong.add(location.getLongitude());
+            if(this.actual != null) {
 
-                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
-                        Toast.LENGTH_SHORT).show();
-                Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                        Toast.LENGTH_SHORT).show();
-                CalculeDistancia(actual, location);
-                actual = location;
+                if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
+                    puntosLat.add(location.getLatitude());
+                    puntosLong.add(location.getLongitude());
 
-            }
+                    Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
+                            Toast.LENGTH_SHORT).show();
+                    CalculeDistancia(actual, location);
+                    actual = location;
+
+                }
+
+            } else  this.actual = location;
         }
     }
 

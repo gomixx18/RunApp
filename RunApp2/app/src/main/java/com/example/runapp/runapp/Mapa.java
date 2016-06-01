@@ -78,7 +78,7 @@ public class Mapa extends AppCompatActivity  {
 
         }
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sj, 15));
 
 
         if(CronoActivity.puntosLat.size() > 0  &&  CronoActivity.puntosLong.size() > 0 ){
