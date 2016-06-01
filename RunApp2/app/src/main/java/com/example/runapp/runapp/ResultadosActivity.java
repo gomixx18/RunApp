@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.runapp.runapp.Modelo.claseStatic;
 
 public class ResultadosActivity extends AppCompatActivity {
 
@@ -13,6 +17,11 @@ public class ResultadosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+
+        TextView tiempo = (TextView) findViewById(R.id.tiempoResultado);
+        TextView distancia = (TextView) findViewById(R.id.distanciaRes);
+
+
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,12 +37,14 @@ public class ResultadosActivity extends AppCompatActivity {
             }
         });
 
-        // alambramos el boton
-
-       // ImageButton MiBoton = (ImageButton) findViewById(R.id.btnImgMapa);
-
-        //Programamos el evento onclick
-
-       //
+        if(claseStatic.valor == 1){
+            tiempo.setText(CronoActivity.resultad);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), claseStatic.tiempo, Toast.LENGTH_LONG).show();
+            tiempo.setText(claseStatic.tiempo );
+            distancia.setText("0.0 KM");
+            findViewById(R.id.btnImgMapa).setClickable(false);
+        }
     }
 }

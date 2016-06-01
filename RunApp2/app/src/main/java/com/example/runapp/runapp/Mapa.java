@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.runapp.runapp.Modelo.GPS;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapa extends AppCompatActivity implements LocationListener {
+public class Mapa extends AppCompatActivity  {
     private GoogleMap googleMap;
     public static LatLng current;
     protected LocationManager locationManager;
@@ -43,7 +43,7 @@ public class Mapa extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        /*locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             return;
@@ -68,7 +68,8 @@ public class Mapa extends AppCompatActivity implements LocationListener {
                         Toast.LENGTH_SHORT).show();
                 break;
             }
-        }
+        }*/
+
         current = new LatLng(latitude,longitude);
         final LatLng sj = new LatLng(9.9271,-84.082);
         if (googleMap == null) {
@@ -80,8 +81,8 @@ public class Mapa extends AppCompatActivity implements LocationListener {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15));
 
 
-        if(CronoActivity.puntosLat.size() > 0  &&  CronoActivity.puntosLong.size() > 0 )
-        pintar(CronoActivity.puntosLat, CronoActivity.puntosLong);
+        if(CronoActivity.puntosLat.size() > 0  &&  CronoActivity.puntosLong.size() > 0 ){
+            pintar(CronoActivity.puntosLat, CronoActivity.puntosLong);}
 
 
     }
@@ -102,23 +103,5 @@ public class Mapa extends AppCompatActivity implements LocationListener {
 
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
 
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }

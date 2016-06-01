@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setNavigationIcon(R.drawable.na);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, incioDrawer.class));
+                finish();
+            }
+        });
 
         findViewById(R.id.fragment).setVisibility(View.GONE);
         findViewById(R.id.fragment2).setVisibility(View.GONE);

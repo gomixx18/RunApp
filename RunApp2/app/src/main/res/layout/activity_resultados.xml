@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10.5"
-            android:id="@+id/textView3"
+            android:id="@+id/distanciaRes"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="29dp"
@@ -61,8 +61,8 @@
             android:text="km"
             android:id="@+id/textView4"
             android:textColor="#ffffff"
-            android:layout_below="@+id/textView3"
-            android:layout_alignEnd="@+id/textView3"
+            android:layout_below="@+id/distanciaRes"
+            android:layout_alignEnd="@+id/distanciaRes"
             android:textStyle="normal|italic"
             android:textSize="18dp"
             android:textAlignment="viewEnd" />
@@ -71,11 +71,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:40:25"
-            android:id="@+id/textView5"
+            android:id="@+id/tiempoResultado"
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:textSize="40dp"
-            android:layout_alignTop="@+id/textView3"
+            android:layout_alignTop="@+id/distanciaRes"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="37dp" />
 
@@ -105,7 +105,7 @@
             android:textStyle="bold|italic"
             android:textSize="18dp"
             android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/textView3" />
+            android:layout_alignStart="@+id/distanciaRes" />
 
     </RelativeLayout>
 </RelativeLayout>

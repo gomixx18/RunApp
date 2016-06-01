@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -22,13 +24,16 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.runapp.runapp.Modelo.GPS;
+
+import com.example.runapp.runapp.Modelo.claseStatic;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
-public class CronoActivity extends AppCompatActivity {
+public class CronoActivity extends claseStatic {
+
 
 
     @Override
@@ -41,161 +46,72 @@ public class CronoActivity extends AppCompatActivity {
         stop.setClickable(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            muestraAlerta1();
+        }
 
         Crono.setText("00:00:00");
-        Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer cArg) {
-                long elapsedMillis = SystemClock.elapsedRealtime() - cArg.getBase();
-                int h = (int) (elapsedMillis / 3600000);
-                int m = (int) (elapsedMillis - h * 3600000) / 60000;
-                int s = (int) (elapsedMillis - h * 3600000 - m * 60000) / 1000;
-                String hh = h < 10 ? "0" + h : h + "";
-                String mm = m < 10 ? "0" + m : m + "";
-                String ss = s < 10 ? "0" + s : s + "";
-                resultad = hh + ":" + mm + ":" + ss;
-                cArg.setText(hh + ":" + mm + ":" + ss);
-            }
-        });
-
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    muestraAlerta();
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                        if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                            return;
-                        } else {
-                            locationManager.removeUpdates(locationListener);
-                        }
-                    } else {
-                        locationManager.removeUpdates(locationListener);
-                    }
-
-                    l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                    Crono.setText("00:00:00");
-                    Crono.setBase(SystemClock.elapsedRealtime());
-                    stop.setClickable(true);
-
-                    if (l != null) {
 
 
-                        locationListener = new LocationListener() {
-                            @Override
-                            public void onLocationChanged(Location location) {
-                                if (location != null) {
-                                    if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
-                                        puntosLat.add(location.getLatitude());
-                                        puntosLong.add(location.getLongitude());
-
-                                        Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
-                                                Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                                                Toast.LENGTH_SHORT).show();
-
-                                        actual = location;
-                                    }
 
 
-                                }
-                            }
-
-                            @Override
-                            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                            }
-
-                            @Override
-                            public void onProviderEnabled(String provider) {
-                                if (isGPSEnabled) {
-                                    Crono.start();
-                                    start.setClickable(false);
-                                }
-                            }
-
-                            @Override
-                            public void onProviderDisabled(String provider) {
-
-                            }
+        if(claseStatic.valor == 1){
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                        };
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                            if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                                return;
-                            } else {
-                                locationManager.requestLocationUpdates(
-                                        LocationManager.GPS_PROVIDER,
-                                        updateTiempo,
-                                    updateDistancia, locationListener);
-                        }
-                    } else {
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,
-                                updateTiempo,
-                                updateDistancia, locationListener);
-                    }
-
-                }else{
-                        Toast.makeText(CronoActivity.this, "no entre ",
-                                Toast.LENGTH_SHORT).show();
-                        muestraAlerta();
-                    }
                 }
-            }
-        });
+            });
+            stop.setOnClickListener(new View.OnClickListener() {
 
-        stop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            @Override
-            public void onClick(View v) {
-                Crono.stop();
-                tiempoTranscurrido();
-                stop.setClickable(false);
-                resultad = Crono.getText().toString();
-                startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
-                finish();
-            }
-        });
+                    Crono.stop();
+                    tiempoTranscurrido();
+                    stop.setClickable(false);
+                    resultad = Crono.getText().toString();
+                    claseStatic.tiempo = resultad;
+                    startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
+                    finish();
+                }
+            });
+        }else{
 
-    }
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    muestraAlerta2();
 
+                }
+            });
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            stop.setOnClickListener(new View.OnClickListener() {
 
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                @Override
+                public void onClick(View v) {
+                    Crono.stop();
+                    tiempoTranscurrido();
+                    stop.setClickable(false);
 
-                return;
-            } else {
-                locationManager.removeUpdates(locationListener);
-            }
-        } else {
-            locationManager.removeUpdates(locationListener);
+                    startActivity(new Intent(CronoActivity.this, ResultadosActivity.class));
+                    finish();
+                }
+            });
         }
 
 
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        isGPSEnabled = locationManager
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
     }
 
-    private void muestraAlerta() {
+
+
+
+
+    public void muestraAlerta1() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Habilitar Localización")
                 .setMessage("Su GPS está apagado.\nEncienda su GPS")
@@ -204,13 +120,13 @@ public class CronoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-
+                        claseStatic.valor =1;
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-
+                        claseStatic.valor = 0;
                     }
 
 
@@ -218,6 +134,34 @@ public class CronoActivity extends AppCompatActivity {
 
 
         dialog.show();
+    }
+
+    public void muestraAlerta2() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(CronoActivity.this).create();
+        alertDialog.setTitle("La sesion iniciara en\n");
+
+        final TextView v = new TextView(CronoActivity.this);
+        v.setClickable(false);
+        v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        v.setTextColor(getResources().getColor(R.color.azul));
+        v.setTextSize(72);
+        alertDialog.setView(v);
+        alertDialog.show();
+
+        new CountDownTimer(6000, 1000)
+        { @Override public void onTick(long millisUntilFinished) {
+                v.setText("" + millisUntilFinished/1000);
+                alertDialog.setView(v);
+            }
+
+            @Override public void onFinish()
+            { alertDialog.hide();
+
+            }
+        }.start();
+
+        Crono.start();
+
     }
 
     public void tiempoTranscurrido() {
@@ -230,11 +174,14 @@ public class CronoActivity extends AppCompatActivity {
         int millis = (int) elapsedMillis % 1000;
         String tiempo = String.format("%02d:%02d:%02d:%03d"
                 , hora, minuto, segundos, millis);
-        Toast.makeText(CronoActivity.this, "Tiempo Transcurrido: " + tiempo,
-                Toast.LENGTH_SHORT).show();
+
+        claseStatic.tiempo = tiempo;
     }
 
 
+
+    long duracion = 5000;
+    CountDownLatch latch;
     LocationListener locationListener;
     public static double distancia = 0;
     Chronometer Crono;
