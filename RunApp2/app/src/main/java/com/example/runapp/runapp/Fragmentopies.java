@@ -79,8 +79,8 @@ public class Fragmentopies extends Fragment {
 
 
     public void ReproducirVideoEnraw( ) {
-    videoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName() + "/" +
-                R.raw.asas));
+    //videoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName() + "/" +
+      //          R.raw.asas));
         videoView.setMediaController(new MediaController(getActivity()));
         videoView.requestFocus();
 
