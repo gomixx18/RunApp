@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.hardware.Camera;
 import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -12,9 +13,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +26,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +34,11 @@ import android.widget.Toast;
 import com.example.runapp.runapp.Modelo.claseStatic;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.File;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -45,6 +52,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
         start = (Button) findViewById(R.id.button2);
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
+        imagen = (ImageView) findViewById(R.id.tomafoto);
         stop.setClickable(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -68,9 +76,6 @@ public class CronoActivity extends claseStatic implements LocationListener {
                     updateTiempo,
                     updateDistancia, CronoActivity.this);
         }
-
-
-
 
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -110,26 +115,55 @@ public class CronoActivity extends claseStatic implements LocationListener {
                     finish();
             }
             });
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            Intent cama = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            File file = archivofoto();
+            cama.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(file));
+                cama.putExtra(
+                        "android.intent.extras.CAMERA_FACING",
+                        Camera.CameraInfo.CAMERA_FACING_FRONT);
+                startActivityForResult(cama, 1);
+            }
+        });
         }
+
+
+
+private File archivofoto(){
+    File folder = new File("sdcard/runappImagenes");
+
+    if(!folder.exists()){
+        folder.mkdir();
+    }
+
+    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+    File imagen = new File(folder,timeStamp +".jpg");
+    return imagen;
+}
 
     public void muestraAlerta1() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Habilitar Localización")
-                .setMessage("Su GPS está apagado.\nEncienda su GPS")
+        dialog.setTitle("Desea habilitar su GPS?")
+                .setMessage("Si escoge no, no tendra distancia recorrida ")
                 .setCancelable(true)
-                .setPositiveButton("Configuración", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                         claseStatic.valor =1;
                     }
                 })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         claseStatic.valor = 0;
                     }
-       });
+                });
 
         dialog.show();
     }
@@ -185,8 +219,12 @@ public class CronoActivity extends claseStatic implements LocationListener {
         }.start();
  }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-public void tiempoTranscurrido() {
+    }
+
+    public void tiempoTranscurrido() {
         elapsedMillis = SystemClock.elapsedRealtime() - Crono.getBase();
 
         int segundos = (int) (elapsedMillis / 1000) % 60;
@@ -295,6 +333,7 @@ static int val = 0;
     public static ArrayList<Double> puntosLong = new ArrayList<>();
     AlertDialog alert = null;
     MediaPlayer misonido;
+    ImageView imagen;
 }
 
 
