@@ -53,6 +53,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
         imagen = (ImageView) findViewById(R.id.tomafoto);
+        imagen.setEnabled(false);
         stop.setEnabled(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -83,12 +84,13 @@ public class CronoActivity extends claseStatic implements LocationListener {
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
                     stop.setEnabled(true);
+                   imagen.setEnabled(true);
                         start.setClickable(false);
                         findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                         muestraAlerta2();
 
                 } else {stop.setEnabled(true);
-
+                    imagen.setEnabled(true);
                     start.setClickable(false);
                     findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                     muestraAlerta2();
@@ -101,6 +103,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
             public void onClick(View v) {
                 Crono.stop();
                 tiempoTranscurrido();
+                imagen.setClickable(false);
                 stop.setClickable(false);
                 claseStatic.Distancia = distancia;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
