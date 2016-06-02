@@ -173,7 +173,7 @@ public class GestorBD extends SQLiteOpenHelper {
     }
 
     // Esto es un comentario
-    // otro
+    // otrojaja
 
     // Retorna la estatura del usuario
     public String getEmail(){
