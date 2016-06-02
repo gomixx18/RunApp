@@ -127,6 +127,10 @@ public class incioDrawer extends AppCompatActivity
             startActivity(new Intent(incioDrawer.this, AcercaDeActivity.class));
             finish();
 
+        }else if (id == R.id.selfies) {
+            startActivity(new Intent(incioDrawer.this, selfies.class));
+            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
