@@ -39,7 +39,7 @@ public class ResultadosActivity extends AppCompatActivity {
 
         if(claseStatic.valor == 1){
             tiempo.setText(CronoActivity.resultad);
-            distancia.setText(claseStatic.Distancia);
+            distancia.setText("" + claseStatic.Distancia);
         }
         else{
             Toast.makeText(getApplicationContext(), claseStatic.tiempo, Toast.LENGTH_LONG).show();
