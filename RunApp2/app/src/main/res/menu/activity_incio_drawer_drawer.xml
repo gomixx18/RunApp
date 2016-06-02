@@ -18,6 +18,11 @@
             android:id="@+id/verTips"
 
             android:title="Tips" />
+
+        <item
+            android:id="@+id/selfies"
+
+            android:title="Ver mis Selfies" />
     </group>
 
     <item android:title="Sistema">
