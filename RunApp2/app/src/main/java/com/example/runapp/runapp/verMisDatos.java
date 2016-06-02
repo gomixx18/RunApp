@@ -44,10 +44,10 @@ public class verMisDatos extends AppCompatActivity {
         edad.setText(gestorBD.getEdad() + " años");
 
         EditText peso = (EditText)findViewById(R.id.editPesoMostrar);
-        peso.setText(gestorBD.getPeso());
+        peso.setText(gestorBD.getPeso()+" kg");
 
         EditText estatura = (EditText)findViewById(R.id.editEstaturaMostrar);
-        estatura.setText(gestorBD.getEstatura());
+        estatura.setText(gestorBD.getEstatura()+" m");
 
     }
 
