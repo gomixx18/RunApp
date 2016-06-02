@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.runapp.runapp.CronoActivity">
+    tools:context="com.example.runapp.runapp.CronoActivity"
+    android:background="#ffffff">
 
     <Chronometer
         android:layout_width="fill_parent"
@@ -26,26 +27,26 @@
         android:layout_height="wrap_content"
         android:text="Iniciar"
         android:id="@+id/button2"
-        android:layout_marginTop="105dp"
-        android:background="@drawable/roundbtn"
+        android:background="#0014f1"
         android:textStyle="bold"
         android:textSize="24dp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/chronometer"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_above="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginBottom="50dp" />
 
     <Button
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Finalizar"
         android:id="@+id/button3"
-        android:background="@drawable/roundbtn"
+        android:background="#0014f1"
         android:textStyle="bold"
         android:textColor="#ffffff"
         android:textSize="24dp"
-        android:layout_below="@+id/button2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginBottom="51dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +56,7 @@
         android:textSize="30dp"
         android:textStyle="normal|bold"
         android:textColor="#ffffff"
-        android:layout_above="@+id/button2"
+        android:layout_alignBottom="@+id/textView17"
         android:layout_alignStart="@+id/button2" />
 
     <TextView
@@ -67,7 +68,16 @@
         android:textSize="24dp"
         android:textColor="#ffffff"
         android:layout_marginLeft="8dp"
-        android:layout_above="@+id/button2"
+        android:layout_marginBottom="41dp"
+        android:layout_alignBottom="@+id/chronometer"
         android:layout_alignEnd="@+id/button2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tomafoto"
+        android:src="@drawable/cm"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

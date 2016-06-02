@@ -5,15 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.hardware.Camera;
 import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +26,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +34,11 @@ import android.widget.Toast;
 import com.example.runapp.runapp.Modelo.claseStatic;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.File;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -43,6 +52,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
         start = (Button) findViewById(R.id.button2);
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
+        imagen = (ImageView) findViewById(R.id.tomafoto);
         stop.setClickable(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -68,31 +78,15 @@ public class CronoActivity extends claseStatic implements LocationListener {
         }
 
 
-        Toast.makeText(CronoActivity.this, "Aca estoy",
-                Toast.LENGTH_SHORT).show();
-        l = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (l != null) {
-            latitud = l.getLatitude();
-            longitud = l.getLongitude();
-            actual = l;
-        }
-
-        isGPSEnabled = locationManager
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
-                    start.setClickable(false);
-                    findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
-                    muestraAlerta2();
-
+                        start.setClickable(false);
+                        muestraAlerta2();
 
                 } else {
                     start.setClickable(false);
-                    findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                     muestraAlerta2();
                 }
             }
@@ -104,7 +98,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
                 Crono.stop();
                 tiempoTranscurrido();
                 stop.setClickable(false);
-                claseStatic.Distancia = "" + distancia;
+                claseStatic.Distancia = distancia;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                     if (ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CronoActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -121,26 +115,55 @@ public class CronoActivity extends claseStatic implements LocationListener {
                     finish();
             }
             });
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            Intent cama = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            File file = archivofoto();
+            cama.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(file));
+                cama.putExtra(
+                        "android.intent.extras.CAMERA_FACING",
+                        Camera.CameraInfo.CAMERA_FACING_FRONT);
+                startActivityForResult(cama, 1);
+            }
+        });
         }
+
+
+
+private File archivofoto(){
+    File folder = new File("sdcard/runappImagenes");
+
+    if(!folder.exists()){
+        folder.mkdir();
+    }
+
+    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+    File imagen = new File(folder,timeStamp +".jpg");
+    return imagen;
+}
 
     public void muestraAlerta1() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Habilitar Localización")
-                .setMessage("Su GPS está apagado.\nEncienda su GPS")
+        dialog.setTitle("Desea habilitar su GPS?")
+                .setMessage("Si escoge no, no tendra distancia recorrida ")
                 .setCancelable(true)
-                .setPositiveButton("Configuración", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                         claseStatic.valor =1;
                     }
                 })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         claseStatic.valor = 0;
                     }
-       });
+                });
 
         dialog.show();
     }
@@ -157,15 +180,22 @@ public class CronoActivity extends claseStatic implements LocationListener {
         v.setTextSize(72);
         alertDialog.setView(v);
         alertDialog.show();
+        misonido = MediaPlayer.create(CronoActivity.this, R.raw.time2);
+
+        misonido.start();
 
         new CountDownTimer(6000, 1000)
         { @Override public void onTick(long millisUntilFinished) {
+
                 v.setText("" + millisUntilFinished/1000);
                 alertDialog.setView(v);
+
             }
 
             @Override public void onFinish()
-            {   alertDialog.hide();
+            {
+
+                alertDialog.hide();
                 Crono.setText("00:00:00");
                 Crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                     @Override
@@ -184,12 +214,17 @@ public class CronoActivity extends claseStatic implements LocationListener {
                 time = SystemClock.elapsedRealtime();
                 Crono.setBase(time);
                 Crono.start();
+                misonido.stop();
             }
         }.start();
  }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-public void tiempoTranscurrido() {
+    }
+
+    public void tiempoTranscurrido() {
         elapsedMillis = SystemClock.elapsedRealtime() - Crono.getBase();
 
         int segundos = (int) (elapsedMillis / 1000) % 60;
@@ -203,35 +238,42 @@ public void tiempoTranscurrido() {
         claseStatic.tiempo = tiempo;
     }
 
+    //if (location != null && location.getTime() >= time && time == 0)
+    // if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude())
 
 
     @Override
     public void onLocationChanged(Location location) {
-        if (location != null && location.getTime() >= time && time == 0) {
-            if(this.actual != null) {
+        if(this.actual == null) {
+            this.actual = location;
+            puntosLat.add(location.getLatitude());
+            puntosLong.add(location.getLongitude());
+        } else {
+            if(location == actual && location != null) {
+                Toast.makeText(CronoActivity.this, "SON IGUales",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                puntosLat.add(location.getLatitude());
+                puntosLong.add(location.getLongitude());
+                CalculeDistancia(actual, location);
+                this.actual = location;
+                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
+                        Toast.LENGTH_SHORT).show();
 
-                if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude()) {
-                    puntosLat.add(location.getLatitude());
-                    puntosLong.add(location.getLongitude());
-
-                    Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
-                            Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                            Toast.LENGTH_SHORT).show();
-                    CalculeDistancia(actual, location);
-                    actual = location;
-
-                }
-
-            } else  this.actual = location;
+            }
         }
     }
+
+
 
 
     public void CalculeDistancia(Location viejo,Location actual)
     {
 
         distancia += (viejo.distanceTo(actual)/1000);
+        distancia = Math.round(distancia * 100.0) / 100.0;
         TextView a = (TextView) findViewById(R.id.textView16);
         a.setText(""+distancia);
 
@@ -271,7 +313,6 @@ public void tiempoTranscurrido() {
 static int val = 0;
     long time = 0;
     CountDownLatch latch;
-    LocationListener mLocationListener;
     public static double distancia = 0;
     Chronometer Crono;
     Button start,stop;
@@ -291,7 +332,8 @@ static int val = 0;
     public static ArrayList<Double> puntosLat = new ArrayList<>();
     public static ArrayList<Double> puntosLong = new ArrayList<>();
     AlertDialog alert = null;
-
+    MediaPlayer misonido;
+    ImageView imagen;
 }
 
 
