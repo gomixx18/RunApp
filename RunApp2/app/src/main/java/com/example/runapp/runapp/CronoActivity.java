@@ -53,7 +53,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
         imagen = (ImageView) findViewById(R.id.tomafoto);
-        stop.setClickable(false);
+        stop.setEnabled(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -82,11 +82,13 @@ public class CronoActivity extends claseStatic implements LocationListener {
             @Override
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
+                    stop.setEnabled(true);
                         start.setClickable(false);
                         findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                         muestraAlerta2();
 
-                } else {
+                } else {stop.setEnabled(true);
+
                     start.setClickable(false);
                     findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                     muestraAlerta2();
@@ -142,9 +144,9 @@ private File archivofoto(){
         folder.mkdir();
     }
 
-    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-    File imagen = new File(folder,timeStamp +".jpg");
+    File imagen = new File(folder,"Recorrido del "+timeStamp +".jpg");
     return imagen;
 }
 
