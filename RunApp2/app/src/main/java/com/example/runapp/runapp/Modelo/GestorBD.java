@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class GestorBD extends SQLiteOpenHelper {
@@ -299,6 +302,59 @@ public class GestorBD extends SQLiteOpenHelper {
         }
     }
 
+
+    public boolean insertarRecorrido(String distancia, String tiempo) {
+
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+
+            DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+            Date diaAcual = new Date();
+            String fechaConFormato = dateformat.format(diaAcual);
+            contentValues.put(fecha_Recorrido, fechaConFormato);
+
+            contentValues.put(distancia_Recorrido, distancia);
+            contentValues.put(tiempo_Recorrido, tiempo);
+            contentValues.put(valoracion_Recorrido, "0");
+
+            db.insert(nombre_tabla_Recorrido, null, contentValues);
+
+            db.close();
+
+            return true;
+
+        }catch (SQLiteException s){
+            mensajeError = s.getMessage();
+            return false;
+        }
+    }
+
+
+
+
+
+
+    public ArrayList<String[]> obtenerRecorridos() {
+        ArrayList<String[]> array_list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT *FROM BD_RunApp_Recorrido", null );
+        res.moveToFirst();
+
+        while(!res.isAfterLast()){
+            String[] arreglo = new String[4];
+            arreglo[0] = res.getString(res.getColumnIndex("Fecha_Recorrido"));
+            arreglo[1] = res.getString(res.getColumnIndex("Distancia_Recorrida"));
+            arreglo[2] = res.getString(res.getColumnIndex("Tiempo_Recorrido"));
+            arreglo[3] = res.getString(res.getColumnIndex("Valoracion_Recorrido"));
+
+            array_list.add(arreglo);
+            res.moveToNext();
+        }
+        return array_list;
+    }
 
 
 
