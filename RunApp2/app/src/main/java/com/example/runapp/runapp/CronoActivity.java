@@ -83,10 +83,12 @@ public class CronoActivity extends claseStatic implements LocationListener {
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
                         start.setClickable(false);
+                        findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                         muestraAlerta2();
 
                 } else {
                     start.setClickable(false);
+                    findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                     muestraAlerta2();
                 }
             }
@@ -192,8 +194,7 @@ private File archivofoto(){
 
             }
 
-            @Override public void onFinish()
-            {
+            @Override public void onFinish() {
 
                 alertDialog.hide();
                 Crono.setText("00:00:00");

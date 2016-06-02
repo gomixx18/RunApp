@@ -40,8 +40,9 @@ public class ResultadosActivity extends AppCompatActivity {
 
         if(claseStatic.valor == 1){   // Con GPS
             tiempo.setText(CronoActivity.resultad);
-            distancia.setText(claseStatic.Distancia);
-            insertarRecorrido(claseStatic.Distancia, "0");
+            String distanciaString = String.valueOf(claseStatic.Distancia);
+            distancia.setText(distanciaString);
+            insertarRecorrido(distanciaString, "0");
         }
         else{ // Sin GPS
             Toast.makeText(getApplicationContext(), claseStatic.tiempo, Toast.LENGTH_LONG).show();
