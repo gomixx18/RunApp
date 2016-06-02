@@ -70,19 +70,30 @@ public class Mapa extends AppCompatActivity  {
             }
         }*/
 
-        current = new LatLng(latitude,longitude);
-        final LatLng sj = new LatLng(9.9271,-84.082);
-        if (googleMap == null) {
-            googleMap = ((MapFragment) getFragmentManager().
-                    findFragmentById(R.id.map)).getMap();
-
-        }
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sj, 15));
-
 
         if(CronoActivity.puntosLat.size() > 0  &&  CronoActivity.puntosLong.size() > 0 ){
-            pintar(CronoActivity.puntosLat, CronoActivity.puntosLong);}
+            current = new LatLng(latitude,longitude);
+            final LatLng milugar  = new LatLng(CronoActivity.puntosLat.size()-1,CronoActivity.puntosLong.size() -1);
+            final LatLng milugarIncio  = new LatLng(CronoActivity.puntosLat.get(0),CronoActivity.puntosLong.get(0));
+
+            if (googleMap == null) {
+                googleMap = ((MapFragment) getFragmentManager().
+                        findFragmentById(R.id.map)).getMap();
+
+            }
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(milugar, 15));
+
+            googleMap.addMarker(new MarkerOptions()
+                    .anchor(0.0f, 1.0f)
+                    .position(milugar));
+
+            googleMap.addMarker(new MarkerOptions()
+                    .anchor(0.0f, 1.0f)
+                    .position(milugarIncio));
+
+            pintar(CronoActivity.puntosLat, CronoActivity.puntosLong);
+        }
 
 
     }

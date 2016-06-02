@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by iknox27 on 31/05/16.
  */
 public class CustomCambioAdapter extends PagerAdapter {
-    ArrayList<String> f = new ArrayList<String>();// list of file paths
+    ArrayList<String> f = new ArrayList<String>();
     File[] listFile;
 
     public int imagenes[] = { R.drawable.ponador1,

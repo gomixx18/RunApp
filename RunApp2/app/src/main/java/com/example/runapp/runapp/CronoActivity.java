@@ -147,7 +147,7 @@ private File archivofoto(){
         folder.mkdir();
     }
 
-    String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    String timeStamp = new SimpleDateFormat("dd-MM-yyyy_hhmmss").format(new Date());
 
     File imagen = new File(folder,"Recorrido del "+timeStamp +".jpg");
     return imagen;
