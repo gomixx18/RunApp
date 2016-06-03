@@ -9,7 +9,8 @@
     tools:showIn="@layout/activity_main">
 
     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="false"
-        android:layout_alignParentEnd="false">
+        android:layout_alignParentEnd="false"
+        android:background="#FFFFFF">
         <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="0dp" android:orientation="vertical" android:measureWithLargestChild="false" android:nestedScrollingEnabled="false">
             <Button android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Consejos de Nutricion" android:id="@+id/nutri"
                 android:background="#0014f1"
