@@ -304,7 +304,7 @@ public class GestorBD extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertarRecorrido(String distancia, String tiempo) {
+    public boolean insertarRecorrido(String distancia, String tiempo,String valoracion) {
 
 
         try {
@@ -318,7 +318,7 @@ public class GestorBD extends SQLiteOpenHelper {
 
             contentValues.put(distancia_Recorrido, distancia);
             contentValues.put(tiempo_Recorrido, tiempo);
-            contentValues.put(valoracion_Recorrido, "0");
+            contentValues.put(valoracion_Recorrido, valoracion);
 
             db.insert(nombre_tabla_Recorrido, null, contentValues);
 
@@ -331,6 +331,8 @@ public class GestorBD extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
 
 
 

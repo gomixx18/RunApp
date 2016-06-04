@@ -1,6 +1,7 @@
 package com.example.runapp.runapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -9,6 +10,7 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,54 +45,42 @@ public class Mapa extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
-        /*locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            return;
-        }
 
-        locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                updateTiempo,
-                updateDistancia, this);
-
-        List<String> providers = locationManager.getProviders(true);
-        Location l = null;
-
-        for (int i = 0; i < providers.size(); i++) {
-            l = locationManager.getLastKnownLocation(providers.get(i));
-            Toast.makeText(Mapa.this, "Tiempo Transcurrido: " + providers.size(),
-                    Toast.LENGTH_SHORT).show();
-            if (l != null) {
-                latitude = l.getLatitude();
-                longitude = l.getLongitude();
-                Toast.makeText(Mapa.this, "Tiempo Transcurrido: " + latitude +" y " + longitude,
-                        Toast.LENGTH_SHORT).show();
-                break;
+        findViewById(R.id.volverres).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Mapa.this, ResultadosActivity.class));
+                finish();
             }
-        }*/
+        });
+
+
+        if (googleMap == null) {
+            googleMap = ((MapFragment) getFragmentManager().
+                    findFragmentById(R.id.map)).getMap();
+
+        }
 
 
         if(CronoActivity.puntosLat.size() > 0  &&  CronoActivity.puntosLong.size() > 0 ){
-            current = new LatLng(latitude,longitude);
-            final LatLng milugar  = new LatLng(CronoActivity.puntosLat.size()-1,CronoActivity.puntosLong.size() -1);
+
+            int tam = CronoActivity.puntosLat.size();
+            final LatLng milugar  = new LatLng(CronoActivity.puntosLat.get(tam-1),CronoActivity.puntosLong.get(tam-1));
             final LatLng milugarIncio  = new LatLng(CronoActivity.puntosLat.get(0),CronoActivity.puntosLong.get(0));
 
-            if (googleMap == null) {
-                googleMap = ((MapFragment) getFragmentManager().
-                        findFragmentById(R.id.map)).getMap();
-
-            }
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(milugar, 15));
+           googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(milugarIncio, 15));
 
             googleMap.addMarker(new MarkerOptions()
                     .anchor(0.0f, 1.0f)
-                    .position(milugar));
-
+                    .position(milugar))
+                    .setTitle("Punto Final");
+//
             googleMap.addMarker(new MarkerOptions()
                     .anchor(0.0f, 1.0f)
-                    .position(milugarIncio));
+                    .position(milugarIncio))
+                    .setTitle("Punto Inicual");
 
             pintar(CronoActivity.puntosLat, CronoActivity.puntosLong);
         }

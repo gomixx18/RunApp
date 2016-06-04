@@ -187,9 +187,7 @@ private File archivofoto(){
         v.setTextSize(72);
         alertDialog.setView(v);
         alertDialog.show();
-        misonido = MediaPlayer.create(CronoActivity.this, R.raw.time2);
 
-        misonido.start();
 
         new CountDownTimer(6000, 1000)
         { @Override public void onTick(long millisUntilFinished) {
@@ -220,7 +218,7 @@ private File archivofoto(){
                 time = SystemClock.elapsedRealtime();
                 Crono.setBase(time);
                 Crono.start();
-                misonido.stop();
+
             }
         }.start();
  }
@@ -279,9 +277,9 @@ private File archivofoto(){
     {
 
         distancia += (viejo.distanceTo(actual)/1000);
-        distancia = Math.round(distancia * 100.0) / 100.0;
+        //distancia = Math.round(distancia * 100.0) / 100.0;
         TextView a = (TextView) findViewById(R.id.textView16);
-        a.setText(""+distancia);
+        a.setText(String.format("%.2f",distancia));
 
     }
 

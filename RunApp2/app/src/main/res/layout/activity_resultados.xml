@@ -84,9 +84,11 @@
             android:layout_height="50dp"
             android:id="@+id/ratingBar"
             android:numStars="5"
+            android:isIndicator="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:rating="4" />
+            android:rating="0"
+            android:stepSize="1" />
 
         <ImageButton
             android:layout_width="300dp"
