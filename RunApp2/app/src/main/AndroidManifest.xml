@@ -57,9 +57,6 @@
         <activity
             android:name=".mapaRecorrido"
             android:label="@string/title_activity_mapa_recorrido" />
-        <activity
-            android:name=".VerRecorridos"
-            android:label="@string/title_activity_ver_recorridos" />
         <activity android:name=".Mapa" />
 
         <meta-data
@@ -110,6 +107,15 @@
         <activity
             android:name=".CambiarDatos"
             android:label="@string/title_activity_cambiar_datos"
+            android:parentActivityName=".incioDrawer"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.runapp.runapp.incioDrawer" />
+        </activity>
+        <activity
+            android:name=".VerRecorridos"
+            android:label="@string/title_activity_ver_recorridos"
             android:parentActivityName=".incioDrawer"
             android:theme="@style/AppTheme">
             <meta-data
