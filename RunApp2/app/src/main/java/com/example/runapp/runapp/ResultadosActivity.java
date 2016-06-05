@@ -74,7 +74,7 @@ public class ResultadosActivity extends AppCompatActivity {
         boolean exito = gestorBD.insertarRecorrido(distance,time,valoracion);
 
         if(exito){
-            Toast.makeText(this, "Recorrido insertado", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Recorrido insertado", Toast.LENGTH_LONG).show();
         }
         else
             Toast.makeText(this,gestorBD.getMensajeError(),Toast.LENGTH_LONG).show();
