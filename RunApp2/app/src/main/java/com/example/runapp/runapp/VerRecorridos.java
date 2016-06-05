@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -63,20 +64,18 @@ public class VerRecorridos extends AppCompatActivity {
             String[] arreglo = new String[4];
             arreglo = list_recorridos.get(i);
             TableRow row= new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
 
             TextView fecha = new TextView(this);
             fecha.setText(arreglo[0]);
-            /*fecha.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT));*/
 
             fecha.setGravity(Gravity.CENTER_HORIZONTAL);
 
             float scale = getResources().getDisplayMetrics().density;
             int dp20 = (int) (20*scale + 0.5f);
             int dp16 = (int) (16*scale + 0.5f);
-            fecha.setPadding(0, dp20, 0, dp16);
+            int dp5 = (int) (5*scale + 0.5f);
+            int dp13 = (int) (13*scale + 0.5f);
+            fecha.setPadding(dp5, dp20, 0, dp16);
             fecha.setFocusable(false);
             fecha.setTextColor(Color.BLACK);
             fecha.setTypeface(null, Typeface.BOLD);
@@ -96,7 +95,7 @@ public class VerRecorridos extends AppCompatActivity {
             TextView tiempo = new TextView(this);
             tiempo.setText(arreglo[2]);
             tiempo.setGravity(Gravity.CENTER_HORIZONTAL);
-            tiempo.setPadding(0, dp20, 0, dp16);
+            tiempo.setPadding(dp13, dp20, 0, dp16);
             tiempo.setFocusable(false);
             tiempo.setTextColor(Color.BLACK);
             tiempo.setTypeface(null, Typeface.BOLD);
@@ -111,20 +110,7 @@ public class VerRecorridos extends AppCompatActivity {
             valoracion.setTextColor(Color.BLACK);
             valoracion.setTypeface(null, Typeface.BOLD);
             valoracion.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-            /*LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            int dp5 = (int) (5*scale + 0.5f);
-            layoutParams.setMargins(dp5, 0, 0, 0);*/
 
-            /*LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            llp.setMargins(5, 0, 0, 0);
-
-            fecha.setLayoutParams(llp);
-            distancia.setLayoutParams(llp);
-            tiempo.setLayoutParams(llp);
-            valoracion.setLayoutParams(llp);*/
-            /*valoracion.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-            valoracion.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);*/
 
             row.addView(fecha);
             row.addView(distancia);
