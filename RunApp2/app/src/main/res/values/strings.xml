@@ -21,7 +21,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_mapa_recorrido">Map</string>
     <string name="title_activity_ver_recorridos">VerRecorridos</string>
-    <string name="title_activity_cambiar_datos">CambiarDatos</string>
+    <string name="title_activity_cambiar_datos">Volver al Inicio</string>
     <string name="title_activity_incio_drawer">incioDrawer</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
