@@ -82,8 +82,9 @@ public class ResultadosActivity extends AppCompatActivity {
 
     public String obtenerValoracion(String distancia, String tiempo){
 
-        if(distancia != "0" ){
-              //  if(Double.parseDouble(distancia) == 0)
+        if(Float.parseFloat(distancia) > 0.0 ){ // si es mayor a cero
+
+
         }
         return valoracion;
     }

@@ -34,10 +34,10 @@ public class CustomCambioAdapter extends PagerAdapter {
     };
 
 
-    public int vec[] = { R.drawable.neutra2,
-            R.drawable.neutra3,
-            R.drawable.nuetra1,
-            R.drawable.neutra4
+    public int vec[] = { R.drawable.nike,
+            R.drawable.neutral,
+            R.drawable.neutral2,
+            R.drawable.neutral3
     };
 
     private Context context;
@@ -47,7 +47,11 @@ public class CustomCambioAdapter extends PagerAdapter {
     public CustomCambioAdapter(Context context, int number){
         this.context = context;
         this.setNumber(number);
-        getFromSdcard();
+
+        if(this.getNumber() == 3){
+            getFromSdcard();
+        }
+
     }
 
     @Override

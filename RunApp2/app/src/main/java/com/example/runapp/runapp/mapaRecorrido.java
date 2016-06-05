@@ -37,62 +37,15 @@ public class mapaRecorrido extends FragmentActivity implements OnMapReadyCallbac
 
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         pintar(mMap);
-        //mMap.setMyLocationEnabled(true);
 
 
-        //LatLng coordenadas = new LatLng(9.9354495,-84.1026813);
-        //CameraUpdate ubicacion=
-        //CameraUpdateFactory.newLatLng(coordenadas);
-        //CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
-        //Criteria criteria = new Criteria();
-        //LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        //String provider = locationManager.getBestProvider(criteria, false);
-        // Location location = locationManager.getLastKnownLocation(provider);
-
-        //double lat =  location.getLatitude();
-        //double lng = location.getLongitude();
-
-        // LatLng coordenadas = new LatLng(lat, lng);
-        //CameraUpdate ubicacion=
-        //        CameraUpdateFactory.newLatLng(coordenadas);
-        // CameraUpdate zoom=CameraUpdateFactory.zoomTo(2);
-
-
-        // mMap.moveCamera(ubicacion);
-        //mMap.animateCamera(zoom);
-
-        Criteria criteria = new Criteria();
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        String provider = locationManager.getBestProvider(criteria, false);
-
-        Location location;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-                }else{
-                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            }
-        }else{
-            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        }
-
-
-        double lat =  location.getLatitude();
-        double lng = location.getLongitude();
-
-        LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate ubicacion= CameraUpdateFactory.newLatLng(coordenadas);
-        CameraUpdate zoom=CameraUpdateFactory.zoomTo(18);
-
-        mMap.moveCamera(ubicacion);
-        mMap.animateCamera(zoom);
     }
 
     public void pintar(GoogleMap googleMap){
