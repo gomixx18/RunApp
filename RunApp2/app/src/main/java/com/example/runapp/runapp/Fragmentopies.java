@@ -49,8 +49,9 @@ public class Fragmentopies extends Fragment {
 
             public void onClick(View arg0) {
 
-                videoView.setVisibility(View.VISIBLE);
-                ReproducirVideoEnraw();
+
+                Intent intento = new Intent(getActivity(), VideoActivity.class);
+                startActivity(intento);
 
             }
 
