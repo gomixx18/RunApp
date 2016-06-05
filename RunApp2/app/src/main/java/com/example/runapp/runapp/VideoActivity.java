@@ -18,7 +18,7 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
 
 
-        String frameVideo = "<html><body><br><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/6Jg_zITS0i4\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+        String frameVideo = "<html><body bgcolor=\"#000000\"><br><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/6Jg_zITS0i4\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
 
         WebView displayYoutubeVideo = (WebView) findViewById(R.id.webView);
         displayYoutubeVideo.setWebViewClient(new WebViewClient() {
@@ -31,8 +31,9 @@ public class VideoActivity extends AppCompatActivity {
         WebSettings webSettings = displayYoutubeVideo.getSettings();
 
         webSettings.setJavaScriptEnabled(true);
-
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
         displayYoutubeVideo.loadData(frameVideo, "text/html", "utf-8");
+
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
     }
