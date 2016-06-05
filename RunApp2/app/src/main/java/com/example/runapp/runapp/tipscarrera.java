@@ -25,9 +25,12 @@ import java.util.Random;
  */
 public class tipscarrera extends Fragment {
     ArrayList<String> array;
-
+    String array2[];
+    int cont = 0;
     public tipscarrera() {
+
         array = new ArrayList<>();
+        array2 = new String [12];
     }
 
 
@@ -47,7 +50,6 @@ public class tipscarrera extends Fragment {
             @Override
             public void onClick(View v) {
                 claseStatic.valorTIPs = 1;
-                claseStatic.arrayTIPs = array;
                 startActivity(new Intent(getActivity(), tipsCompletos.class));
             }
         });
@@ -68,6 +70,8 @@ public class tipscarrera extends Fragment {
 
                 texto = lector.readLine();
                 array.add(texto);
+                array2[cont] = texto;
+                cont++;
             }
         } catch (Exception ex) {
             Log.e("ivan", "Error al leer fichero desde recurso raw");

@@ -86,37 +86,6 @@ public class nutricionFragment extends Fragment {
     }
 
 
-   /* public void generaTexto(TextView a , TextView b ,TextView c, int valor){
-        boolean si = false; boolean si2 = false;
-
-        Random randomno = new Random();
-        int valor1 = randomno.nextInt(valor);
-        a.setText(array.get(valor1));
-
-        Random randomno2 = new Random();
-        int valor2;
-        do{
-
-         valor2 = randomno2.nextInt(valor);
-            if(valor2 != valor1){
-                si = true;
-            }
-        }while(!si);
-
-        if(si)
-        b.setText(array.get(valor2));
-
-        int valor3 = randomno.nextInt(valor);
-        do{
-            valor3 = randomno.nextInt(valor);
-            if(valor3 != valor1 && valor2 !=valor3){
-                si2 = true;
-            }
-        }while(si2);
-
-        if(!si2)
-        c.setText(array.get(valor3));
-    }*/
 
 
     public void generaTexto(TextView a, TextView b, TextView c, int valor) {

@@ -46,6 +46,7 @@
         <activity android:name=".RegistroFit" />
         <activity android:name=".CronoActivity" />
         <activity android:name=".ResultadosActivity" />
+        <activity android:name=".tipsCompletos" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -114,6 +115,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.runapp.runapp.incioDrawer" />
         </activity>
+
 
     </application>
 
