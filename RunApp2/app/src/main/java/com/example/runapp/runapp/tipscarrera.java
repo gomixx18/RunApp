@@ -1,6 +1,7 @@
 package com.example.runapp.runapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.runapp.runapp.Modelo.claseStatic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,6 +42,16 @@ public class tipscarrera extends Fragment {
         TextView c = (TextView) v.findViewById(R.id.textViewcarrera3);
         leerFicheroRaw();
         generaTexto(a, b, c, array.size() - 1);
+
+        v.findViewById(R.id.vert2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claseStatic.valorTIPs = 1;
+                claseStatic.arrayTIPs = array;
+                startActivity(new Intent(getActivity(), tipsCompletos.class));
+            }
+        });
+
         return v;
     }
 
