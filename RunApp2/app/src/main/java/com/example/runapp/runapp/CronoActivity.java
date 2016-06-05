@@ -242,10 +242,6 @@ private File archivofoto(){
         claseStatic.tiempo = tiempo;
     }
 
-    //if (location != null && location.getTime() >= time && time == 0)
-    // if (actual.getLatitude() != location.getLatitude() && actual.getLongitude() != location.getLongitude())
-
-
     @Override
     public void onLocationChanged(Location location) {
         if(this.actual == null) {
@@ -254,8 +250,7 @@ private File archivofoto(){
             puntosLong.add(location.getLongitude());
         } else {
             if(location == actual && location != null) {
-                Toast.makeText(CronoActivity.this, "SON IGUales",
-                        Toast.LENGTH_SHORT).show();
+
             } else {
                 puntosLat.add(location.getLatitude());
                 puntosLong.add(location.getLongitude());

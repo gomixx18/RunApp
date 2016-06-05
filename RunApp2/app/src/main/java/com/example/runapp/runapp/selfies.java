@@ -31,7 +31,7 @@ public class selfies extends AppCompatActivity {
         });
 
         viewPager = (ViewPager) findViewById(R.id.tennisV1);
-        customCambioAdapter= new CustomCambioAdapter(selfies.this, 3);
+        customCambioAdapter = new CustomCambioAdapter(selfies.this, 3);
         viewPager.setAdapter(customCambioAdapter);
 
 

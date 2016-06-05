@@ -40,7 +40,7 @@ public class Fragmentopies extends Fragment {
 
 
 
-        Button MiBoton = (Button) v.findViewById(R.id.pronador);
+        Button MiBoton = (Button) v.findViewById(R.id.button6);
         Button MiBoton2 = (Button) v.findViewById(R.id.tiiposPP);
 
         MiBoton.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +50,10 @@ public class Fragmentopies extends Fragment {
             public void onClick(View arg0) {
 
 
+
                 Intent intento = new Intent(getActivity(), VideoActivity.class);
                 startActivity(intento);
+
 
             }
 
@@ -82,6 +84,10 @@ public class Fragmentopies extends Fragment {
     public void ReproducirVideoEnraw( ) {
     //videoView.setVideoURI(Uri.parse("android.resource://" + getActivity().getPackageName() + "/" +
       //          R.raw.asas));
+
+        Uri uri=Uri.parse("rtsp://r7---sn-4g57kue6.googlevideo.com/Ck0LENy73wIaRAmk3cJBg-iaXhMYDSANFC3u0pRWMOCoAUIJbXYtZ29vZ2xlSARSBXdhdGNoYIaluaTkzciOVooBCzVxRjNraG5XcXdnDA==/D693A8E7577C3A29E60C292B42C9C87D7C25A565.762A63DC4CA0A028DA83256C6A79E5F160CBEDA3/yt6/1/video.3gp");
+
+        videoView.setVideoURI(uri);
         videoView.setMediaController(new MediaController(getActivity()));
         videoView.requestFocus();
 

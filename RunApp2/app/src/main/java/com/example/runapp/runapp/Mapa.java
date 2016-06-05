@@ -76,7 +76,7 @@ public class Mapa extends AppCompatActivity  {
                     .anchor(0.0f, 1.0f)
                     .position(milugar))
                     .setTitle("Punto Final");
-//
+
             googleMap.addMarker(new MarkerOptions()
                     .anchor(0.0f, 1.0f)
                     .position(milugarIncio))

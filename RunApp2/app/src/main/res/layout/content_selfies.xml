@@ -7,10 +7,10 @@
 
 
     <android.support.v4.view.ViewPager
-        android:layout_marginTop="150dp"
         android:id="@+id/tennisV1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
     </android.support.v4.view.ViewPager>
 </RelativeLayout>

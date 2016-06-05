@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.runapp.runapp.CambiarDatos"
+    tools:showIn="@layout/activity_cambiar_datos"
+    android:background="@drawable/fitness_sunset">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/txtFitness"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/edad"
+            android:id="@+id/txtEdad"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/txtPeso"
+            android:textColor="#ff4747"
+            android:layout_marginTop="44dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editEdad"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:backgroundTint="#000000"
+            android:hint="@string/edad" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/peso"
+            android:id="@+id/txtPeso"
+            android:textColor="#ff4747"
+            android:layout_marginTop="24dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editPeso"
+            android:hint="@string/peso"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:backgroundTint="#ffffff"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtPeso"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/estatura"
+            android:id="@+id/txtEstatura"
+            android:layout_below="@+id/editPeso"
+            android:textColor="#ff4747"
+            android:layout_alignStart="@+id/txtEdad"
+            android:layout_marginTop="22dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editEstatura"
+            android:hint="@string/estatura"
+            android:textColor="#ffffff"
+            android:backgroundTint="#ffffff"
+            android:textColorHint="#ffffff"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtEstatura"
+            android:layout_alignParentEnd="true" />
+
+    </LinearLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/btnGuarda"
+        android:text="Guardar Cambios"
+        android:background="@drawable/roundbtn"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:clickable="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/linearLayout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Fitness"
+        android:id="@+id/txtFitness"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="normal|bold|italic" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancelar"
+        android:text="Cancelar"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:clickable="false"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/btnGuarda"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,102 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.example.runapp.runapp.VerRecorridos">
 
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-    <TableLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/tablaRecorridos">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fd2901"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <TableRow android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/fila1">
+    </android.support.design.widget.AppBarLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:paddingTop="20dp"
-                android:textSize="16dp"
-                android:paddingBottom="16dp"
-                android:text="Fecha"
-                android:textColor="#ffffff"
-                android:background="#ff4b1a"
-                android:layout_marginStart="5dp"
-                android:layout_height="wrap_content"
-                android:editable="false"
-                android:textStyle="bold"
-                android:autoText="false"
-                android:id="@+id/txtFecha">
-            </TextView>
+    <include layout="@layout/content_ver_recorridos" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:paddingTop="20dp"
-                android:textSize="16dp"
-                android:paddingBottom="16dp"
-                android:text="Distancia"
-                android:textColor="#ffffff"
-                android:background="#ff4b1a"
-                android:layout_marginStart="5dp"
-                android:editable="false"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/txtDistancia">
-            </TextView>
-
-            <TextView
-                android:text="Tiempo"
-                android:textColor="#ffffff"
-                android:background="#ff4b1a"
-                android:gravity="center_horizontal"
-                android:paddingTop="20dp"
-                android:paddingBottom="16dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textSize="16dp"
-                android:layout_weight="1"
-                android:editable="false"
-                android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/txtTiempo">
-            </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:paddingTop="20dp"
-                android:textSize="16dp"
-                android:paddingBottom="16dp"
-                android:text="Valoración"
-                android:textColor="#ffffff"
-                android:background="#ff4b1a"
-                android:layout_marginStart="5dp"
-                android:editable="false"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:autoText="false"
-                android:id="@+id/txtValoracion">
-            </TextView>
-
-        </TableRow>
-
-</TableLayout>
-
-   </ScrollView>
-
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
