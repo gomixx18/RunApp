@@ -240,6 +240,7 @@ private File archivofoto(){
                 , hora, minuto, segundos);
 
         claseStatic.tiempo = tiempo;
+        claseStatic.fechaStatic = new Date(0,0,0,hora,minuto,segundos);
     }
 
     @Override

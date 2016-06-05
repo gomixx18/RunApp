@@ -3,6 +3,7 @@ package com.example.runapp.runapp.Modelo;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by iknox27 on 31/05/16.
@@ -14,9 +15,11 @@ public class claseStatic  extends AppCompatActivity {
     public static double Distancia;
     public static int valorTIPs;
     public static ArrayList<String> arrayTIPs = new ArrayList<>();
+        public static long elapsedMillisStatic;
+        public static Date fechaStatic;
 
 
-    public static String[] valuesCArrera = new String[] { "Usa ropa y zapatos adecuados. Los zapatos tenis son la herramienta mas importante de un corredor",
+        public static String[] valuesCArrera = new String[] { "Usa ropa y zapatos adecuados. Los zapatos tenis son la herramienta mas importante de un corredor",
             "No uses zapatos nuevos. Ve a lo seguro con tus tenis ya probados.",
             "Estar hidratado es una de las partes mas importantes para correr una carrera, una adecuada hidratación te ayudará a tener la estamina y resistencia necesarias.",
             "Toma pequeños sorbos de agua, o solo enguajate para refrescarte, aprovecha las bebidas deportivas como para reponer electrolitos y recuperar energía.",
