@@ -53,7 +53,8 @@ public class CronoActivity extends claseStatic implements LocationListener {
         stop = (Button) findViewById(R.id.button3);
         Crono = (Chronometer) findViewById(R.id.chronometer);
         imagen = (ImageView) findViewById(R.id.tomafoto);
-        stop.setClickable(false);
+        imagen.setEnabled(false);
+        stop.setEnabled(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -82,11 +83,14 @@ public class CronoActivity extends claseStatic implements LocationListener {
             @Override
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
+                    stop.setEnabled(true);
+                   imagen.setEnabled(true);
                         start.setClickable(false);
                         findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                         muestraAlerta2();
 
-                } else {
+                } else {stop.setEnabled(true);
+                    imagen.setEnabled(true);
                     start.setClickable(false);
                     findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                     muestraAlerta2();
@@ -99,6 +103,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
             public void onClick(View v) {
                 Crono.stop();
                 tiempoTranscurrido();
+                imagen.setClickable(false);
                 stop.setClickable(false);
                 claseStatic.Distancia = distancia;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -142,9 +147,9 @@ private File archivofoto(){
         folder.mkdir();
     }
 
-    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    String timeStamp = new SimpleDateFormat("dd-MM-yyyy_hhmmss").format(new Date());
 
-    File imagen = new File(folder,timeStamp +".jpg");
+    File imagen = new File(folder,"Recorrido del "+timeStamp +".jpg");
     return imagen;
 }
 
@@ -182,9 +187,7 @@ private File archivofoto(){
         v.setTextSize(72);
         alertDialog.setView(v);
         alertDialog.show();
-        misonido = MediaPlayer.create(CronoActivity.this, R.raw.time2);
 
-        misonido.start();
 
         new CountDownTimer(6000, 1000)
         { @Override public void onTick(long millisUntilFinished) {
@@ -215,7 +218,7 @@ private File archivofoto(){
                 time = SystemClock.elapsedRealtime();
                 Crono.setBase(time);
                 Crono.start();
-                misonido.stop();
+
             }
         }.start();
  }
@@ -274,9 +277,9 @@ private File archivofoto(){
     {
 
         distancia += (viejo.distanceTo(actual)/1000);
-        distancia = Math.round(distancia * 100.0) / 100.0;
+        //distancia = Math.round(distancia * 100.0) / 100.0;
         TextView a = (TextView) findViewById(R.id.textView16);
-        a.setText(""+distancia);
+        a.setText(String.format("%.2f",distancia));
 
     }
 

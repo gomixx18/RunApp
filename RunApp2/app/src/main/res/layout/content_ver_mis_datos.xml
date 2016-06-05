@@ -11,7 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.runapp.runapp.verMisDatos"
-    tools:showIn="@layout/activity_ver_mis_datos">-->
+    tools:showIn="@layout/activity_ver_mis_datos"
+    android:background="#ffffff">-->
 
 
     <TextView
@@ -104,8 +105,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:editable="false"
         android:background="#00000000"
-        android:layout_above="@+id/txtUsuario"
-        android:layout_alignStart="@+id/txtDatosPersonales" />
+        android:layout_alignBottom="@+id/txtNombre"
+        android:layout_alignParentEnd="true" />
 
 
     <EditText
@@ -138,8 +139,8 @@
         android:background="#00000000"
         android:editable="false"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_above="@+id/txtCorreo"
-        android:layout_alignStart="@+id/editNombreMostrar" />
+        android:layout_alignTop="@+id/txtUsuario"
+        android:layout_alignStart="@+id/txtDatosPersonales" />
 
 
 

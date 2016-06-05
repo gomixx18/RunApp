@@ -2,25 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.runapp.runapp.tipscarrera">
+    tools:context="com.example.runapp.runapp.tipscarrera"
+    android:background="#FFFFFF">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left|top">
+        android:layout_gravity="left|top"
+        android:background="#FFFFFF">
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:fillViewport="false"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:background="#FFFFFF">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
                 android:measureWithLargestChild="false"
                 android:nestedScrollingEnabled="false"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:background="#FFFFFF">
 
 
                 <TextView
