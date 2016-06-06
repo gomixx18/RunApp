@@ -218,6 +218,7 @@ private File archivofoto(){
                     }
                 });
                 time = SystemClock.elapsedRealtime();
+                recibir = true;
                 Crono.setBase(time);
                 Crono.start();
 
@@ -247,23 +248,26 @@ private File archivofoto(){
 
     @Override
     public void onLocationChanged(Location location) {
-        if(this.actual == null) {
-            this.actual = location;
-            puntosLat.add(location.getLatitude());
-            puntosLong.add(location.getLongitude());
-        } else {
-            if(location == actual && location != null) {
 
-            } else {
+        if(recibir) {
+            if (this.actual == null) {
+                this.actual = location;
                 puntosLat.add(location.getLatitude());
                 puntosLong.add(location.getLongitude());
-                CalculeDistancia(actual, location);
-                this.actual = location;
+            } else {
+                if (location == actual && location != null) {
+
+                } else {
+                    puntosLat.add(location.getLatitude());
+                    puntosLong.add(location.getLongitude());
+                    CalculeDistancia(actual, location);
+                    this.actual = location;
                 /*Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
                         Toast.LENGTH_SHORT).show();
                 Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
                         Toast.LENGTH_SHORT).show();*/
 
+                }
             }
         }
     }
@@ -310,6 +314,12 @@ private File archivofoto(){
 
 
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CronoActivity.this, incioDrawer.class));
+    }
+
+
 
 
 static int val = 0;
@@ -336,6 +346,7 @@ static int val = 0;
     AlertDialog alert = null;
     MediaPlayer misonido;
     ImageView imagen;
+    public boolean recibir = false;
 }
 
 

@@ -38,6 +38,7 @@ public class ResultadosActivity extends AppCompatActivity {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                claseStatic.Distancia = 0.0;
                 startActivity(new Intent(ResultadosActivity.this, CronoActivity.class));
                 finish();
             }
