@@ -43,6 +43,7 @@
         android:background="@drawable/roundbtn"
         android:textStyle="bold"
         android:textColor="#ffffff"
+        android:visibility="invisible"
         android:textSize="24dp"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"

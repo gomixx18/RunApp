@@ -54,7 +54,7 @@ public class CronoActivity extends claseStatic implements LocationListener {
         Crono = (Chronometer) findViewById(R.id.chronometer);
         imagen = (ImageView) findViewById(R.id.tomafoto);
         imagen.setEnabled(false);
-        stop.setEnabled(false);
+        //stop.setEnabled(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -83,13 +83,15 @@ public class CronoActivity extends claseStatic implements LocationListener {
             @Override
             public void onClick(View v) {
                 if (claseStatic.valor == 1) {
-                    stop.setEnabled(true);
+                    //stop.setEnabled(true);
+                    stop.setVisibility(View.VISIBLE);
                    imagen.setEnabled(true);
                         start.setClickable(false);
                         findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
                         muestraAlerta2();
 
-                } else {stop.setEnabled(true);
+                } else {//stop.setEnabled(true);
+                    stop.setVisibility(View.VISIBLE);
                     imagen.setEnabled(true);
                     start.setClickable(false);
                     findViewById(R.id.button2).setBackgroundResource(R.drawable.roundbtngris);
@@ -155,8 +157,8 @@ private File archivofoto(){
 
     public void muestraAlerta1() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Desea habilitar su GPS?")
-                .setMessage("Si escoge no, no tendra distancia recorrida ")
+        dialog.setTitle("¿Desea habilitar su GPS?")
+                .setMessage("Si escoge no, no tendrá distancia recorrida.")
                 .setCancelable(true)
                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
@@ -178,7 +180,7 @@ private File archivofoto(){
     public void muestraAlerta2() {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(CronoActivity.this).create();
-        alertDialog.setTitle("   La sesion iniciara en\n");
+        alertDialog.setTitle("   La sesión iniciará en\n");
 
         final TextView v = new TextView(CronoActivity.this);
         v.setClickable(false);
@@ -257,10 +259,10 @@ private File archivofoto(){
                 puntosLong.add(location.getLongitude());
                 CalculeDistancia(actual, location);
                 this.actual = location;
-                Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
+                /*Toast.makeText(CronoActivity.this, "LAT" + location.getLatitude() + "LONG" + location.getLongitude(),
                         Toast.LENGTH_SHORT).show();
                 Toast.makeText(CronoActivity.this, "POS vector" + puntosLong.size(),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
 
             }
         }

@@ -24,7 +24,7 @@
         android:text="Iniciar nueva Sesion"
         android:id="@+id/button4"
         android:layout_marginBottom="66dp"
-        android:background="#0014f1"
+        android:background="@drawable/roundbtn"
         android:focusable="true"
         android:textStyle="bold"
         android:textSize="18dp"
