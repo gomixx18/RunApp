@@ -325,7 +325,7 @@ private File archivofoto(){
 static int val = 0;
     long time = 0;
     CountDownLatch latch;
-    public static double distancia = 0;
+    public double distancia = 0;
     Chronometer Crono;
     Button start,stop;
     public static final long aMinutos = 60000;
