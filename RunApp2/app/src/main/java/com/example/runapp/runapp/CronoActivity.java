@@ -326,7 +326,7 @@ static int val = 0;
     Location actual;
     public static boolean isGPSEnabled = false;
     public static boolean isNetworkEnabled = false;
-    private static final long updateDistancia = 5;
+    private static final long updateDistancia = 2;
     private static final long updateTiempo = 1000 * 1;
     double latitud;
     double longitud;
